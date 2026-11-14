@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,34 +9,48 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --bg: #fafafa; --bg-2: #fff; --border: #e8e8ef; --border-hover: #d4d4e0;
-    --text: #0f0f1a; --dim: #6b6b80; --dim-2: #9a9ab0;
-    --accent: #6366f1; --accent-2: #8b5cf6; --accent-soft: #eef0ff;
+  :root, [data-theme="light"] {
+    --bg: #f7f7f8; --bg-2: #f0f0f2; --card: #ffffff;
+    --border: #e4e4e7; --border-hover: #d4d4d8;
+    --text: #0a0a0a; --dim: #6b6b70; --dim-2: #9a9aa0;
+    --accent: #111111; --accent-text: #ffffff; --accent-soft: #ebebee;
     --danger: #dc2626; --success: #16a34a; --warning: #d97706;
-    --shadow-sm: 0 1px 2px rgba(15,15,26,.04);
-    --shadow-md: 0 4px 16px rgba(15,15,26,.06);
-    --shadow-lg: 0 12px 40px rgba(15,15,26,.08);
+    --shadow: 0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,.06), 0 16px 48px rgba(0,0,0,.06);
     --font: 'Inter', system-ui, sans-serif;
   }
-  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 85% 10%, rgba(220,38,38,.05), transparent 40%); }
+  [data-theme="dark"] {
+    --bg: #0a0a0a; --bg-2: #111111; --card: #141414;
+    --border: #232323; --border-hover: #333333;
+    --text: #f4f4f4; --dim: #9a9a9a; --dim-2: #6b6b6b;
+    --accent: #f4f4f4; --accent-text: #0a0a0a; --accent-soft: #1a1a1a;
+    --danger: #ef4444; --success: #22c55e; --warning: #f59e0b;
+    --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.4);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,.4), 0 16px 48px rgba(0,0,0,.6);
+  }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 4px; }
   .wrap { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
 
   .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
   .logo { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; text-decoration: none; color: var(--text); }
-  .logo-mark { width: 30px; height: 30px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+  .logo-mark { width: 28px; height: 28px; border-radius: 7px; overflow: hidden; flex-shrink: 0; }
   .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
   .admin-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
-  .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-  .btn-sm { padding: 9px 16px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg-2); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all .2s; }
-  .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
+  .header-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .btn-sm { padding: 9px 16px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all .2s; }
+  .btn-sm:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+  .theme-btn { width: 36px; height: 36px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; display: grid; place-items: center; font-size: 15px; transition: all .2s; }
+  .theme-btn:hover { border-color: var(--border-hover); background: var(--accent-soft); }
 
   h1 { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
   .sub { font-size: 14px; color: var(--dim); margin-bottom: 28px; line-height: 1.5; }
 
   /* Статистика */
   .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 28px; }
-  .stat { background: var(--bg-2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; box-shadow: var(--shadow-sm); }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; box-shadow: var(--shadow); }
   .stat-num { font-size: 26px; font-weight: 800; letter-spacing: -1px; }
   .stat-label { font-size: 11px; color: var(--dim); margin-top: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
   .stat.pending .stat-num { color: var(--warning); }
@@ -44,20 +58,20 @@
   .stat.rejected .stat-num { color: var(--danger); }
 
   /* Табы */
-  .tabs { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; padding: 5px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 5px; }
   .tab { padding: 9px 16px; border-radius: 9px; border: none; background: transparent; color: var(--dim); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; position: relative; }
   .tab:hover { color: var(--text); }
-  .tab.active { background: var(--accent); color: #fff; }
+  .tab.active { background: var(--accent); color: var(--accent-text); }
   .tab .count { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; background: rgba(0,0,0,.1); font-size: 11px; font-weight: 700; }
   .tab.active .count { background: rgba(255,255,255,.25); }
   .tab.has-pending { color: var(--warning); }
-  .tab.has-pending.active { color: #fff; }
+  .tab.has-pending.active { color: var(--accent-text); }
 
   /* Список серверов */
   .server-list { display: flex; flex-direction: column; gap: 12px; }
-  .server-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow-sm); }
+  .server-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: var(--shadow); }
   .server-main { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
-  .server-avatar { width: 64px; height: 64px; border-radius: 14px; overflow: hidden; background: linear-gradient(135deg, var(--accent), var(--accent-2)); display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 24px; flex-shrink: 0; }
+  .server-avatar { width: 64px; height: 64px; border-radius: 14px; overflow: hidden; background: var(--accent-soft); display: grid; place-items: center; color: var(--text); font-weight: 800; font-size: 24px; flex-shrink: 0; }
   .server-avatar img { width: 100%; height: 100%; object-fit: cover; }
   .server-body { flex: 1; min-width: 240px; }
   .server-title { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
@@ -65,8 +79,7 @@
   .server-desc { font-size: 13px; color: var(--dim); line-height: 1.5; margin-bottom: 10px; }
   .server-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12px; color: var(--dim); margin-bottom: 10px; }
   .server-meta span { display: inline-flex; align-items: center; gap: 4px; }
-  .server-meta a { color: var(--accent); text-decoration: none; }
-  .server-meta a:hover { text-decoration: underline; }
+  .server-meta a { color: var(--text); text-decoration: underline; }
 
   .badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
   .badge.pending { background: #fffbeb; color: var(--warning); border: 1px solid #fde68a; }
@@ -74,6 +87,7 @@
   .badge.rejected { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; }
   .badge.paused { background: var(--bg); color: var(--dim); border: 1px solid var(--border); }
   .badge.nsfw { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; }
+  .badge.trash { background: var(--bg-2); color: var(--dim-2); border: 1px solid var(--border); }
 
   .owner-info { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--dim); padding: 8px 12px; background: var(--bg); border-radius: 9px; margin-top: 10px; flex-wrap: wrap; }
   .owner-info .owner-label { font-weight: 600; }
@@ -82,10 +96,9 @@
   .rejection-note { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 10px 14px; font-size: 13px; color: var(--danger); margin-top: 10px; line-height: 1.5; }
   .rejection-note strong { font-weight: 700; }
 
-  /* Действия */
   .server-actions { display: flex; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); flex-wrap: wrap; }
-  .action-btn { padding: 9px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; display: inline-flex; align-items: center; gap: 5px; }
-  .action-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .action-btn { padding: 9px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; display: inline-flex; align-items: center; gap: 5px; text-decoration: none; }
+  .action-btn:hover { border-color: var(--border-hover); background: var(--accent-soft); }
   .action-btn.approve { color: var(--success); border-color: #bbf7d0; }
   .action-btn.approve:hover { background: #f0fdf4; border-color: var(--success); }
   .action-btn.reject { color: var(--danger); border-color: #fecaca; }
@@ -94,30 +107,30 @@
   .action-btn.danger:hover { background: #fef2f2; border-color: var(--danger); }
 
   /* Модалка */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(15,15,26,.5); display: none; z-index: 100; padding: 20px; overflow-y: auto; }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); display: none; z-index: 100; padding: 20px; overflow-y: auto; }
   .modal-overlay.show { display: block; }
-  .modal { background: var(--bg-2); border-radius: 18px; max-width: 520px; margin: 40px auto; padding: 28px; box-shadow: var(--shadow-lg); }
+  .modal { background: var(--card); border-radius: 18px; max-width: 520px; margin: 40px auto; padding: 28px; box-shadow: var(--shadow-lg); }
   .modal h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
   .modal .hint { font-size: 13px; color: var(--dim); margin-bottom: 20px; line-height: 1.5; }
   .field { margin-bottom: 16px; }
   label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; }
-  textarea, input { width: 100%; padding: 12px 15px; border-radius: 11px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px; font-family: inherit; outline: none; transition: all .2s; }
-  textarea:focus, input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(99,102,241,.08); }
+  textarea, input { width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px; font-family: inherit; outline: none; transition: all .2s; }
+  textarea:focus, input:focus { border-color: var(--border-hover); background: var(--card); }
   textarea { resize: vertical; min-height: 100px; line-height: 1.5; }
   .modal-actions { display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end; flex-wrap: wrap; }
-  .btn-modal { padding: 11px 22px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-2); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; }
-  .btn-modal:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-modal.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn-modal.primary:hover { background: var(--accent-2); border-color: var(--accent-2); color: #fff; }
+  .btn-modal { padding: 11px 22px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; }
+  .btn-modal:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+  .btn-modal.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+  .btn-modal.primary:hover { opacity: .85; }
   .btn-modal.reject { background: var(--danger); border-color: var(--danger); color: #fff; }
-  .btn-modal.reject:hover { background: #b91c1c; }
-  .btn-modal:disabled { opacity: .6; cursor: not-allowed; }
+  .btn-modal.reject:hover { opacity: .9; }
+  .btn-modal:disabled { opacity: .5; cursor: not-allowed; }
   .quick-reasons { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   .quick-reason { font-size: 12px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); color: var(--dim); cursor: pointer; font-family: inherit; transition: all .2s; }
   .quick-reason:hover { border-color: var(--danger); color: var(--danger); }
 
   /* Пустое состояние */
-  .empty-state { text-align: center; padding: 60px 24px; background: var(--bg-2); border: 1px dashed var(--border); border-radius: 16px; }
+  .empty-state { text-align: center; padding: 60px 24px; background: var(--card); border: 1px dashed var(--border); border-radius: 16px; }
   .empty-state .icon { font-size: 56px; margin-bottom: 16px; }
   .empty-state h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
   .empty-state p { font-size: 14px; color: var(--dim); line-height: 1.5; }
@@ -128,13 +141,13 @@
   .auth-required .icon { font-size: 48px; margin-bottom: 16px; }
   .auth-required h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
   .auth-required p { font-size: 14px; color: var(--dim); margin-bottom: 24px; line-height: 1.5; }
-  .auth-required a { display: inline-block; padding: 14px 28px; border-radius: 12px; background: #5865f2; color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; }
+  .auth-required a { display: inline-block; padding: 14px 28px; border-radius: 10px; background: var(--accent); color: var(--accent-text); font-size: 15px; font-weight: 600; text-decoration: none; }
 
-  /* Toast */
-  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--text); color: #fff; padding: 12px 22px; border-radius: 10px; font-size: 14px; font-weight: 500; box-shadow: var(--shadow-lg); transition: transform .3s; z-index: 200; max-width: 90%; text-align: center; }
+  /* Тост */
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--text); color: var(--bg); padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-lg); transition: transform .3s; z-index: 200; max-width: 90%; text-align: center; }
   .toast.show { transform: translateX(-50%) translateY(0); }
-  .toast.success { background: var(--success); }
-  .toast.error { background: var(--danger); }
+  .toast.success { background: var(--success); color: #fff; }
+  .toast.error { background: var(--danger); color: #fff; }
 </style>
 </head>
 <body>
@@ -149,6 +162,7 @@
     <div class="header-actions">
       <a class="btn-sm" href="https://kirill12633.github.io/partnership.metro.new/">← Каталог</a>
       <a class="btn-sm" href="https://kirill12633.github.io/partnership.metro.new/dashboard/">Мои серверы</a>
+      <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
     </div>
   </div>
 
@@ -195,13 +209,14 @@
       <button class="tab active" data-tab="pending">Очередь <span class="count" id="countPending">0</span></button>
       <button class="tab" data-tab="approved">Одобренные</button>
       <button class="tab" data-tab="rejected">Отклонённые</button>
+      <button class="tab" data-tab="trash">Корзина</button>
       <button class="tab" data-tab="all">Все</button>
     </div>
 
     <div id="serverList" class="server-list"></div>
     <div id="emptyState" class="empty-state" style="display:none">
       <div class="icon">✅</div>
-      <h2>Очередь пуста</h2>
+      <h2 id="emptyTitle">Очередь пуста</h2>
       <p id="emptyText">Нет серверов, требующих модерации.</p>
     </div>
   </div>
@@ -255,11 +270,25 @@
     auth: { detectSessionInUrl: false, persistSession: true, autoRefreshToken: true }
   });
 
+  // Тема
+  const themeBtn = document.getElementById('themeBtn');
+  const savedTheme = localStorage.getItem('metro_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  themeBtn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('metro_theme', next);
+    themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+
   const authRequired = document.getElementById('authRequired');
   const noAccess = document.getElementById('noAccess');
   const adminWrap = document.getElementById('adminWrap');
   const serverList = document.getElementById('serverList');
   const emptyState = document.getElementById('emptyState');
+  const emptyTitle = document.getElementById('emptyTitle');
   const emptyText = document.getElementById('emptyText');
   const toast = document.getElementById('toast');
 
@@ -284,7 +313,7 @@
     return new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
-  // ===== Проверка админа =====
+  // ===== Проверка админа (с fallback) =====
   async function checkAdmin() {
     const { data: { session } } = await supabase.auth.getSession();
     if (!session?.user) {
@@ -294,14 +323,35 @@
     }
     currentUser = session.user;
 
-    // Проверяем, есть ли в admins
-    const { data: admin } = await supabase
-      .from('admins')
-      .select('user_id')
-      .eq('user_id', currentUser.id)
-      .maybeSingle();
+    let isAdmin = false;
 
-    if (!admin) {
+    // Попытка 1: RPC is_admin()
+    try {
+      const { data: rpcResult, error: rpcErr } = await supabase.rpc('is_admin');
+      if (!rpcErr && rpcResult === true) {
+        isAdmin = true;
+      }
+    } catch (e) {
+      console.warn('RPC is_admin failed:', e);
+    }
+
+    // Попытка 2: прямой select из admins (fallback)
+    if (!isAdmin) {
+      try {
+        const { data: adminRow, error: adminErr } = await supabase
+          .from('admins')
+          .select('user_id')
+          .eq('user_id', currentUser.id)
+          .maybeSingle();
+
+        if (!adminErr && adminRow) isAdmin = true;
+        if (adminErr) console.warn('Direct admins select failed:', adminErr);
+      } catch (e) {
+        console.warn('Fallback admins failed:', e);
+      }
+    }
+
+    if (!isAdmin) {
       noAccess.classList.add('show');
       adminWrap.style.display = 'none';
       return;
@@ -317,13 +367,23 @@
   async function loadServers() {
     serverList.innerHTML = '<div style="text-align:center;padding:40px;color:var(--dim)">Загрузка...</div>';
 
+    // Админ видит ВСЁ через service_role? Нет, используем обычный select
+    // RLS: админ должен иметь политику на SELECT всех серверов
     const { data, error } = await supabase
       .from('servers')
       .select('*')
       .order('created_at', { ascending: false });
 
     if (error) {
-      serverList.innerHTML = `<div class="empty-state"><div class="icon">⚠️</div><h2>Ошибка</h2><p>${escapeHtml(error.message)}</p></div>`;
+      console.error('loadServers error:', error);
+      serverList.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">⚠️</div>
+          <h2>Ошибка загрузки</h2>
+          <p>${escapeHtml(error.message)}</p>
+          <p style="margin-top:12px;font-size:12px;color:var(--dim-2)">Проверьте RLS-политику на таблице servers. Админ должен иметь доступ к SELECT.</p>
+        </div>
+      `;
       return;
     }
 
@@ -344,7 +404,6 @@
     document.getElementById('statTotal').textContent = notDeleted.length;
     document.getElementById('countPending').textContent = pending;
 
-    // Подсветка таба «Очередь» если есть pending
     const pendingTab = document.querySelector('.tab[data-tab="pending"]');
     pendingTab.classList.toggle('has-pending', pending > 0);
   }
@@ -354,18 +413,21 @@
     if (currentTab === 'pending') filtered = allServers.filter(s => !s.deleted_at && s.moderation_status === 'pending');
     else if (currentTab === 'approved') filtered = allServers.filter(s => !s.deleted_at && s.moderation_status === 'approved');
     else if (currentTab === 'rejected') filtered = allServers.filter(s => !s.deleted_at && s.moderation_status === 'rejected');
+    else if (currentTab === 'trash') filtered = allServers.filter(s => s.deleted_at);
     else filtered = allServers.filter(s => !s.deleted_at);
 
     if (!filtered.length) {
       serverList.innerHTML = '';
       emptyState.style.display = 'block';
       const texts = {
-        pending: 'Все серверы проверены. Отличная работа!',
-        approved: 'Нет одобренных серверов.',
-        rejected: 'Нет отклонённых серверов.',
-        all: 'В каталоге пока нет серверов.'
+        pending: ['Очередь пуста', 'Все серверы проверены. Отличная работа!'],
+        approved: ['Нет одобренных', 'Пока нет одобренных серверов.'],
+        rejected: ['Нет отклонённых', 'Пока нет отклонённых серверов.'],
+        trash: ['Корзина пуста', 'Нет серверов в корзине.'],
+        all: ['Нет серверов', 'В каталоге пока нет серверов.']
       };
-      emptyText.textContent = texts[currentTab];
+      emptyTitle.textContent = texts[currentTab][0];
+      emptyText.textContent = texts[currentTab][1];
       return;
     }
 
@@ -380,7 +442,9 @@
       : escapeHtml(s.name[0].toUpperCase());
 
     const nsfwBadge = s.is_nsfw ? '<span class="badge nsfw">18+</span>' : '';
-    const statusBadge = s.moderation_status === 'pending' ? '<span class="badge pending">⏳ На модерации</span>'
+    const trashBadge = s.deleted_at ? '<span class="badge trash">В корзине</span>' : '';
+    const statusBadge = s.deleted_at ? ''
+      : s.moderation_status === 'pending' ? '<span class="badge pending">⏳ На модерации</span>'
       : s.moderation_status === 'approved' ? '<span class="badge approved">✓ Одобрен</span>'
       : '<span class="badge rejected">✕ Отклонён</span>';
 
@@ -394,11 +458,16 @@
         <span class="owner-id">${escapeHtml(s.owner_id.slice(0, 8))}...</span>
         <span>·</span>
         <span>Добавлен: ${formatDate(s.created_at)}</span>
+        ${s.views_count ? `<span>· 👁 ${s.views_count}</span>` : ''}
       </div>
     `;
 
     let actions = '';
-    if (s.moderation_status === 'pending') {
+    if (s.deleted_at) {
+      actions = `
+        <button class="action-btn danger" data-action="delete" data-id="${s.id}">🗑 Удалить навсегда</button>
+      `;
+    } else if (s.moderation_status === 'pending') {
       actions = `
         <button class="action-btn approve" data-action="approve" data-id="${s.id}">✓ Одобрить</button>
         <button class="action-btn reject" data-action="reject" data-id="${s.id}">✕ Отклонить</button>
@@ -426,6 +495,7 @@
               <span class="server-name">${escapeHtml(s.name)}</span>
               ${statusBadge}
               ${nsfwBadge}
+              ${trashBadge}
             </div>
             <div class="server-desc">${escapeHtml((s.description || '').slice(0, 200))}${(s.description || '').length > 200 ? '...' : ''}</div>
             <div class="server-meta">
@@ -460,13 +530,31 @@
 
   // ===== Действия =====
   async function approveServer(id) {
-    const { error } = await supabase.rpc('moderate_server', {
-      server_id_input: id,
-      new_status: 'approved',
-      note: null
-    });
+    // Пробуем RPC moderate_server, если нет — прямой update
+    let ok = false;
 
-    if (error) return showToast('Ошибка: ' + error.message, 'error');
+    try {
+      const { error } = await supabase.rpc('moderate_server', {
+        server_id_input: id,
+        new_status: 'approved',
+        note: null
+      });
+      if (!error) ok = true;
+      else console.warn('RPC moderate_server failed, trying update:', error);
+    } catch (e) {
+      console.warn('RPC error:', e);
+    }
+
+    if (!ok) {
+      // Fallback: прямой update (RLS: админ должен иметь политику UPDATE)
+      const { error } = await supabase
+        .from('servers')
+        .update({ moderation_status: 'approved', moderation_note: null })
+        .eq('id', id);
+
+      if (error) return showToast('Ошибка: ' + error.message, 'error');
+    }
+
     showToast('Сервер одобрен', 'success');
     await loadServers();
   }
@@ -496,15 +584,32 @@
     const btn = document.getElementById('confirmReject');
     btn.disabled = true;
 
-    const { error } = await supabase.rpc('moderate_server', {
-      server_id_input: rejectingServer.id,
-      new_status: 'rejected',
-      note: reason
-    });
+    let ok = false;
+
+    try {
+      const { error } = await supabase.rpc('moderate_server', {
+        server_id_input: rejectingServer.id,
+        new_status: 'rejected',
+        note: reason
+      });
+      if (!error) ok = true;
+    } catch (e) {
+      console.warn('RPC error:', e);
+    }
+
+    if (!ok) {
+      const { error } = await supabase
+        .from('servers')
+        .update({ moderation_status: 'rejected', moderation_note: reason })
+        .eq('id', rejectingServer.id);
+
+      if (error) {
+        btn.disabled = false;
+        return showToast('Ошибка: ' + error.message, 'error');
+      }
+    }
 
     btn.disabled = false;
-
-    if (error) return showToast('Ошибка: ' + error.message, 'error');
     document.getElementById('rejectModal').classList.remove('show');
     showToast('Сервер отклонён', 'success');
     rejectingServer = null;
