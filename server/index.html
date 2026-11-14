@@ -7,6 +7,20 @@
 <link rel="icon" type="image/png" href="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- SEO + OG -->
+<meta name="description" content="Страница Discord-сервера в каталоге Metro New Partnership. Найди партнёров и расти вместе.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Сервер — Metro New Partnership">
+<meta property="og:description" content="Страница Discord-сервера в каталоге Metro New Partnership.">
+<meta property="og:image" content="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
+<meta property="og:url" content="https://kirill12633.github.io/partnership.metro.new/server/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Сервер — Metro New Partnership">
+<meta name="twitter:description" content="Страница Discord-сервера в каталоге Metro New Partnership.">
+<meta name="twitter:image" content="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
+<link rel="canonical" href="https://kirill12633.github.io/partnership.metro.new/server/">
+
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root, [data-theme="light"] {
@@ -72,6 +86,10 @@
   .btn-join:hover { opacity: .85; transform: translateY(-1px); }
   .btn-share { padding: 13px 22px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; transition: all .2s; }
   .btn-share:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+  .btn-promote { padding: 13px 22px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; transition: all .2s; }
+  .btn-promote:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+  .btn-edit { padding: 13px 22px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; transition: all .2s; text-decoration: none; }
+  .btn-edit:hover { border-color: var(--border-hover); background: var(--accent-soft); }
 
   .content-grid { display: grid; grid-template-columns: 1fr 300px; gap: 16px; }
   @media (max-width: 760px) { .content-grid { grid-template-columns: 1fr; } }
@@ -81,8 +99,16 @@
   .card h3 .ico { font-size: 18px; }
   .card p { font-size: 14px; line-height: 1.65; color: var(--text); white-space: pre-wrap; }
 
+  /* Галерея */
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+  .gallery-item { aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; background: var(--bg); border: 1px solid var(--border); cursor: pointer; transition: all .2s; }
+  .gallery-item:hover { border-color: var(--border-hover); transform: scale(1.02); }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-empty { text-align: center; padding: 32px; color: var(--dim-2); font-size: 13px; border: 1px dashed var(--border); border-radius: 10px; }
+
   .tags-list { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag-pill { font-size: 12px; padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--text); font-weight: 500; }
+  .tag-pill { font-size: 12px; padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--text); font-weight: 500; text-decoration: none; transition: all .2s; cursor: pointer; }
+  .tag-pill:hover { background: var(--border-hover); }
 
   .req-list { display: flex; flex-direction: column; gap: 10px; }
   .req-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
@@ -100,6 +126,15 @@
   .contact-value { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .contact-arrow { color: var(--dim-2); font-size: 16px; }
 
+  /* Владелец */
+  .owner-card { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 12px; background: var(--bg); border: 1px solid var(--border); text-decoration: none; color: var(--text); transition: all .2s; }
+  .owner-card:hover { border-color: var(--border-hover); background: var(--card); }
+  .owner-avatar { width: 48px; height: 48px; border-radius: 50%; overflow: hidden; background: var(--accent-soft); display: grid; place-items: center; color: var(--text); font-weight: 700; font-size: 18px; flex-shrink: 0; }
+  .owner-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .owner-info { flex: 1; min-width: 0; }
+  .owner-name { font-size: 14px; font-weight: 700; }
+  .owner-meta { font-size: 12px; color: var(--dim); margin-top: 2px; }
+
   .stat-row { display: flex; justify-content: space-between; padding: 9px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
   .stat-row:last-child { border-bottom: none; }
   .stat-row .label { color: var(--dim); }
@@ -113,8 +148,25 @@
   .similar-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .similar-meta { font-size: 11px; color: var(--dim); }
 
+  /* Соцсети */
+  .social-share { display: flex; flex-wrap: wrap; gap: 8px; }
+  .social-share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 13px; font-weight: 600; text-decoration: none; cursor: pointer; font-family: inherit; transition: all .2s; }
+  .social-share-btn:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+  .social-share-btn svg { width: 16px; height: 16px; }
+
+  /* Lightbox */
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.9); display: none; z-index: 999; align-items: center; justify-content: center; padding: 20px; }
+  .lightbox.show { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; }
+  .lightbox-close { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(255,255,255,.2); color: #fff; font-size: 20px; cursor: pointer; }
+
   .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--text); color: var(--bg); padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-lg); transition: transform .3s; z-index: 200; }
   .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .owner-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .owner-stat-box { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+  .owner-stat-num { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
+  .owner-stat-label { font-size: 11px; color: var(--dim); margin-top: 4px; text-transform: uppercase; letter-spacing: .5px; font-weight: 600; }
 </style>
 </head>
 <body>
@@ -153,10 +205,7 @@
           <div class="hero-meta" id="heroMeta"></div>
         </div>
       </div>
-      <div class="hero-actions">
-        <a class="btn-join" id="joinBtn" href="#" target="_blank" rel="noopener">Войти в Discord ↗</a>
-        <button class="btn-share" id="shareBtn">↗ Поделиться</button>
-      </div>
+      <div class="hero-actions" id="heroActions"></div>
     </div>
 
     <div class="content-grid">
@@ -164,6 +213,11 @@
         <div class="card">
           <h3><span class="ico">📝</span>Описание</h3>
           <p id="description">—</p>
+        </div>
+
+        <div class="card" id="galleryCard" style="display:none">
+          <h3><span class="ico">🖼</span>Скриншоты</h3>
+          <div class="gallery" id="gallery"></div>
         </div>
 
         <div class="card" id="tagsCard" style="display:none">
@@ -182,9 +236,25 @@
           <h3><span class="ico">📞</span>Контакты для пиара</h3>
           <div id="contactsList"></div>
         </div>
+
+        <div class="card">
+          <h3><span class="ico">↗</span>Поделиться</h3>
+          <div class="social-share" id="socialShare"></div>
+        </div>
       </div>
 
       <div>
+        <div class="card" id="ownerCard" style="display:none">
+          <h3><span class="ico">👤</span>Владелец</h3>
+          <a class="owner-card" id="ownerLink" href="#">
+            <div class="owner-avatar" id="ownerAvatar"></div>
+            <div class="owner-info">
+              <div class="owner-name" id="ownerName">—</div>
+              <div class="owner-meta" id="ownerMeta">—</div>
+            </div>
+          </a>
+        </div>
+
         <div class="card">
           <h3><span class="ico">📊</span>Статистика</h3>
           <div class="stat-row"><span class="label">Участников</span><span class="value" id="statMembers">—</span></div>
@@ -193,19 +263,33 @@
           <div class="stat-row"><span class="label">Добавлен</span><span class="value" id="statDate">—</span></div>
         </div>
 
+        <div class="card" id="ownerStatsCard" style="display:none">
+          <h3><span class="ico">📈</span>Ваша статистика</h3>
+          <div class="owner-stats">
+            <div class="owner-stat-box">
+              <div class="owner-stat-num" id="ownerViews">0</div>
+              <div class="owner-stat-label">Просмотры</div>
+            </div>
+            <div class="owner-stat-box">
+              <div class="owner-stat-num" id="ownerClicks">0</div>
+              <div class="owner-stat-label">Клики</div>
+            </div>
+          </div>
+        </div>
+
         <div class="card" id="similarCard" style="display:none">
           <h3><span class="ico">✨</span>Похожие серверы</h3>
           <div class="similar-list" id="similarList"></div>
         </div>
 
-        <div class="card" id="reportCard">
+        <div class="card">
           <h3><span class="ico">⚠️</span>Нашли нарушение?</h3>
           <p style="font-size:13px;color:var(--dim);line-height:1.55;margin-bottom:12px">Если сервер нарушает правила, сообщите администрации.</p>
-          <a class="contact-item" id="reportBtn" href="https://discord.com/invite/WjGZBs3HMX" target="_blank" rel="noopener" style="margin-bottom:0">
+          <a class="contact-item" id="reportBtn" href="#" style="margin-bottom:0">
             <div class="contact-icon">🚩</div>
             <div class="contact-info">
               <div class="contact-type">Пожаловаться</div>
-              <div class="contact-value">Написать в Discord</div>
+              <div class="contact-value">Написать на почту</div>
             </div>
             <span class="contact-arrow">↗</span>
           </a>
@@ -216,16 +300,23 @@
 
 </div>
 
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('show')">×</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script type="module">
   const SUPABASE_URL = 'https://bwuozoqhdklbucjqmydj.supabase.co';
   const SUPABASE_KEY = 'sb_publishable_UjwfHz_j8SSpkqaTpqR87w_HSlswxaQ';
+  const REPORT_EMAIL = 'metro.new.help@gmail.com';
+  const SITE_URL = 'https://kirill12633.github.io/partnership.metro.new';
 
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  // ===== Тема =====
+  // Тема
   const themeBtn = document.getElementById('themeBtn');
   const savedTheme = localStorage.getItem('metro_theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
@@ -248,6 +339,9 @@
   let server = null;
   let contacts = [];
   let tags = [];
+  let photos = [];
+  let owner = null;
+  let isOwner = false;
 
   function showToast(msg) {
     toast.textContent = msg;
@@ -270,50 +364,76 @@
 
     if (!id) return showError('Не указан ID сервера', 'Откройте сервер из каталога или личного кабинета.');
 
-    const { data: s, error } = await supabase
-      .from('servers')
-      .select('*')
-      .eq('id', id)
-      .maybeSingle();
+    // Используем RPC для строгой проверки (approved + не в корзине + активен)
+    const { data: arr, error } = await supabase.rpc('get_public_server', { server_id_input: id });
+    const s = arr && arr[0];
 
-    if (error || !s) return showError('Сервер не найден', 'Возможно, он удалён или ещё не прошёл модерацию.');
+    // Если RPC не сработал (нет функции) — fallback на обычный select
+    if (error) {
+      const { data: fallback } = await supabase.from('servers').select('*').eq('id', id).maybeSingle();
+      if (!fallback) return showError('Сервер не найден', 'Возможно, он удалён или ещё не прошёл модерацию.');
 
-    const { data: { session } } = await supabase.auth.getSession();
-    const isOwner = session?.user?.id === s.owner_id;
-    const isApproved = s.moderation_status === 'approved' && !s.deleted_at && s.status === 'active';
+      const { data: { session } } = await supabase.auth.getSession();
+      isOwner = session?.user?.id === fallback.owner_id;
 
-    if (!isApproved && !isOwner) {
-      return showError('Сервер недоступен', 'Этот сервер ещё не прошёл модерацию или скрыт владельцем.');
+      // Строгая проверка: только approved + не в корзине + активен
+      const isVisible = fallback.moderation_status === 'approved' && !fallback.deleted_at && fallback.status === 'active';
+      if (!isVisible) {
+        if (fallback.deleted_at) return showError('Сервер в корзине', 'Восстановите его в личном кабинете.');
+        if (fallback.moderation_status === 'pending') return showError('Сервер на модерации', 'Мы проверим его в течение 24 часов.');
+        if (fallback.moderation_status === 'rejected') return showError('Сервер отклонён', 'Причина указана в личном кабинете.');
+        return showError('Сервер недоступен', 'Сервер скрыт владельцем.');
+      }
+      server = fallback;
+    } else {
+      if (!s) return showError('Сервер не найден', 'Возможно, он удалён или ещё не прошёл модерацию.');
+      server = s;
+      const { data: { session } } = await supabase.auth.getSession();
+      isOwner = session?.user?.id === s.owner_id;
     }
 
-    server = s;
-
-    const { data: c } = await supabase
-      .from('partnership_contacts')
-      .select('contact_type, contact_value')
-      .eq('server_id', id);
+    // Контакты
+    const { data: c } = await supabase.from('partnership_contacts').select('contact_type, contact_value').eq('server_id', id);
     contacts = c || [];
 
-    const { data: t } = await supabase
-      .from('server_tags')
-      .select('tag_id, tags(name)')
-      .eq('server_id', id);
+    // Теги
+    const { data: t } = await supabase.from('server_tags').select('tag_id, tags(name)').eq('server_id', id);
     tags = (t || []).map(x => x.tags?.name).filter(Boolean);
 
-    if (!isOwner && s.stats_enabled) {
-      supabase.rpc('increment_view', { server_id_input: s.id }).catch(() => {});
+    // Фото (галерея)
+    try {
+      const { data: p } = await supabase.from('server_photos').select('url').eq('server_id', id).order('created_at');
+      photos = (p || []).map(x => x.url);
+    } catch { photos = []; }
+
+    // Владелец
+    try {
+      const { data: o } = await supabase.from('profiles_public').select('username, avatar_url, created_at').eq('id', server.owner_id).single();
+      owner = o;
+    } catch { owner = null; }
+
+    // Rate limiting на просмотры (1 раз в 30 минут на сервер, через localStorage)
+    if (!isOwner && server.stats_enabled) {
+      const key = `view_${server.id}`;
+      const lastView = parseInt(localStorage.getItem(key) || '0');
+      const now = Date.now();
+      if (now - lastView > 30 * 60 * 1000) {
+        localStorage.setItem(key, now.toString());
+        supabase.rpc('increment_view', { server_id_input: server.id }).catch(() => {});
+      }
     }
 
     render();
 
+    // Похожие
     const { data: similar } = await supabase
       .from('servers')
       .select('id, name, avatar_url, members, category')
-      .eq('category', s.category)
+      .eq('category', server.category)
       .eq('moderation_status', 'approved')
       .is('deleted_at', null)
       .eq('status', 'active')
-      .neq('id', s.id)
+      .neq('id', server.id)
       .order('members', { ascending: false })
       .limit(5);
 
@@ -333,8 +453,20 @@
   function render() {
     const s = server;
 
+    // SEO-теги динамически
+    document.title = `${s.name} — Metro New Partnership`;
+    document.querySelector('meta[name="description"]').setAttribute('content', (s.description || '').slice(0, 160));
+    document.querySelector('meta[property="og:title"]').setAttribute('content', `${s.name} — Metro New Partnership`);
+    document.querySelector('meta[property="og:description"]').setAttribute('content', (s.description || '').slice(0, 200));
+    document.querySelector('meta[property="og:url"]').setAttribute('content', `${SITE_URL}/server/?id=${s.id}`);
+    if (s.avatar_url) {
+      document.querySelector('meta[property="og:image"]').setAttribute('content', s.avatar_url);
+      document.querySelector('meta[name="twitter:image"]').setAttribute('content', s.avatar_url);
+    }
+    document.querySelector('link[rel="canonical"]').setAttribute('href', `${SITE_URL}/server/?id=${s.id}`);
+
     const avatarHtml = s.avatar_url
-      ? `<img src="${escapeHtml(s.avatar_url)}" alt="">`
+      ? `<img src="${escapeHtml(s.avatar_url)}" alt="${escapeHtml(s.name)}">`
       : escapeHtml(s.name[0].toUpperCase());
     document.getElementById('heroAvatar').innerHTML = avatarHtml;
 
@@ -352,25 +484,52 @@
       ${s.views_count ? `<span>👁 ${s.views_count.toLocaleString('ru-RU')} просмотров</span>` : ''}
     `;
 
+    // Кнопки действий
+    const actions = [];
     if (s.invite_link) {
-      const joinBtn = document.getElementById('joinBtn');
-      joinBtn.href = s.invite_link;
-      joinBtn.onclick = () => {
+      actions.push(`<a class="btn-join" id="joinBtn" href="${escapeHtml(s.invite_link)}" target="_blank" rel="noopener">Войти в Discord ↗</a>`);
+    }
+    if (isOwner) {
+      actions.push(`<a class="btn-edit" href="${SITE_URL}/dashboard/">✎ Редактировать</a>`);
+      actions.push(`<button class="btn-promote" id="promoteBtn">📣 Продвинуть</button>`);
+    }
+    document.getElementById('heroActions').innerHTML = actions.join('');
+
+    // Клик на «Войти» = +1 клик
+    const joinBtn = document.getElementById('joinBtn');
+    if (joinBtn) {
+      joinBtn.addEventListener('click', () => {
         if (s.stats_enabled) supabase.rpc('increment_click', { server_id_input: s.id }).catch(() => {});
-      };
-    } else {
-      document.getElementById('joinBtn').style.display = 'none';
+      });
+    }
+
+    // Кнопка «Продвинуть»
+    const promoteBtn = document.getElementById('promoteBtn');
+    if (promoteBtn) {
+      promoteBtn.addEventListener('click', () => {
+        showToast('Функция продвижения скоро появится');
+      });
     }
 
     document.getElementById('description').textContent = s.description || 'Описание отсутствует.';
 
-    if (tags.length) {
-      document.getElementById('tagsCard').style.display = 'block';
-      document.getElementById('tagsList').innerHTML = tags.map(t =>
-        `<span class="tag-pill">${escapeHtml(t)}</span>`
+    // Галерея
+    if (photos.length) {
+      document.getElementById('galleryCard').style.display = 'block';
+      document.getElementById('gallery').innerHTML = photos.map(url =>
+        `<div class="gallery-item" onclick="openLightbox('${escapeHtml(url)}')"><img src="${escapeHtml(url)}" alt="" loading="lazy"></div>`
       ).join('');
     }
 
+    // Теги
+    if (tags.length) {
+      document.getElementById('tagsCard').style.display = 'block';
+      document.getElementById('tagsList').innerHTML = tags.map(t =>
+        `<a class="tag-pill" href="${SITE_URL}/?tag=${encodeURIComponent(t)}">${escapeHtml(t)}</a>`
+      ).join('');
+    }
+
+    // Требования
     const hasReqs = s.partner_min_members || s.partner_min_online || (s.partner_categories && s.partner_categories.length) || s.partner_notes;
     if (hasReqs) {
       document.getElementById('partnersCard').style.display = 'block';
@@ -392,15 +551,69 @@
       }
     }
 
+    // Контакты
     if (contacts.length) {
       document.getElementById('contactsCard').style.display = 'block';
       document.getElementById('contactsList').innerHTML = contacts.map(c => renderContact(c)).join('');
     }
 
+    // Владелец
+    if (owner) {
+      document.getElementById('ownerCard').style.display = 'block';
+      document.getElementById('ownerLink').href = `${SITE_URL}/user/?id=${server.owner_id}`;
+      document.getElementById('ownerAvatar').innerHTML = owner.avatar_url
+        ? `<img src="${escapeHtml(owner.avatar_url)}" alt="">`
+        : escapeHtml((owner.username || '?')[0].toUpperCase());
+      document.getElementById('ownerName').textContent = owner.username || 'Пользователь';
+      document.getElementById('ownerMeta').textContent = 'С нами с ' + formatDate(owner.created_at);
+    }
+
+    // Статистика
     document.getElementById('statMembers').textContent = (s.members || 0).toLocaleString('ru-RU');
     document.getElementById('statViews').textContent = s.stats_enabled ? (s.views_count || 0).toLocaleString('ru-RU') : '—';
     document.getElementById('statClicks').textContent = s.stats_enabled ? (s.clicks_count || 0).toLocaleString('ru-RU') : '—';
     document.getElementById('statDate').textContent = formatDate(s.created_at);
+
+    // Статистика владельца
+    if (isOwner) {
+      document.getElementById('ownerStatsCard').style.display = 'block';
+      document.getElementById('ownerViews').textContent = (s.views_count || 0).toLocaleString('ru-RU');
+      document.getElementById('ownerClicks').textContent = (s.clicks_count || 0).toLocaleString('ru-RU');
+    }
+
+    // Поделиться
+    const url = `${SITE_URL}/server/?id=${s.id}`;
+    const text = encodeURIComponent(`${s.name} — Discord-сервер в каталоге Metro New Partnership`);
+    document.getElementById('socialShare').innerHTML = `
+      <button class="social-share-btn" onclick="copyLink()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Скопировать ссылку
+      </button>
+      <a class="social-share-btn" href="https://t.me/share/url?url=${encodeURIComponent(url)}&text=${text}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.9 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0011.9 0zm5.6 8.2l-1.9 8.9c-.1.6-.5.7-.9.5l-2.5-1.9-1.2 1.2c-.1.1-.3.2-.6.2l.2-2.6 4.7-4.2c.2-.2 0-.3-.3-.1l-5.8 3.7-2.5-.8c-.5-.2-.5-.5.1-.8l9.8-3.8c.5-.2.9.1.8.7z"/></svg>
+        Telegram
+      </a>
+      <a class="social-share-btn" href="https://vk.com/share.php?url=${encodeURIComponent(url)}&title=${text}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.2 18.4c-6.1 0-9.6-4.2-9.7-11.2h3.1c.1 5.1 2.4 7.3 4.2 7.7V7.2h2.9v4.4c1.8-.2 3.6-2.2 4.2-4.4h2.9c-.5 2.7-2.4 4.7-3.8 5.5 1.4.7 3.6 2.4 4.4 5.7h-3.2c-.6-2-2.2-3.6-4.5-3.8v3.8h-.5z"/></svg>
+        VK
+      </a>
+      <a class="social-share-btn" href="https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${text}" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 1.2h3.7l-8.1 9.2 9.5 12.6h-7.4l-5.8-7.6-6.7 7.6H.3l8.6-9.8L0 1.2h7.6l5.3 7 6-7zm-1.3 19.6h2L6.5 3.2H4.4l13.2 17.6z"/></svg>
+        Twitter
+      </a>
+    `;
+
+    // Жалоба через почту
+    const reportSubject = encodeURIComponent(`Жалоба на сервер: ${s.name} (ID: ${s.id})`);
+    const reportBody = encodeURIComponent(
+      `Сервер: ${s.name}\n` +
+      `ID: ${s.id}\n` +
+      `Ссылка: ${SITE_URL}/server/?id=${s.id}\n\n` +
+      `Опишите нарушение:\n[введите здесь]\n\n` +
+      `---\n` +
+      `Отправлено со страницы сервера Metro New Partnership`
+    );
+    document.getElementById('reportBtn').href = `mailto:${REPORT_EMAIL}?subject=${reportSubject}&body=${reportBody}`;
   }
 
   function renderContact(c) {
@@ -451,13 +664,22 @@
     }).join('');
   }
 
-  document.getElementById('shareBtn').addEventListener('click', async () => {
+  window.copyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
       showToast('Ссылка скопирована');
     } catch {
       showToast('Не удалось скопировать');
     }
+  };
+
+  window.openLightbox = (url) => {
+    document.getElementById('lightboxImg').src = url;
+    document.getElementById('lightbox').classList.add('show');
+  };
+
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') e.target.classList.remove('show');
   });
 
   loadServer();
