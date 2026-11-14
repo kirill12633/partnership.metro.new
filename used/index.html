@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Профиль — Metro New Partnership</title>
+<link rel="icon" type="image/png" href="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Профиль — Metro New Partnership">
+<meta property="og:description" content="Профиль владельца Discord-серверов в каталоге Metro New Partnership.">
+<meta property="og:image" content="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
+<meta name="theme-color" content="#f7f7f8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root, [data-theme="light"] {
+    --bg: #f7f7f8; --bg-2: #f0f0f2; --card: #ffffff;
+    --border: #e4e4e7; --border-hover: #d4d4d8;
+    --text: #0a0a0a; --dim: #6b6b70; --dim-2: #9a9aa0;
+    --accent: #111111; --accent-text: #ffffff; --accent-soft: #ebebee;
+    --danger: #dc2626; --success: #16a34a; --warning: #d97706;
+    --shadow: 0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,.06), 0 16px 48px rgba(0,0,0,.06);
+    --font: 'Inter', system-ui, sans-serif;
+  }
+  [data-theme="dark"] {
+    --bg: #0a0a0a; --bg-2: #111111; --card: #141414;
+    --border: #232323; --border-hover: #333333;
+    --text: #f4f4f4; --dim: #9a9a9a; --dim-2: #6b6b6b;
+    --accent: #f4f4f4; --accent-text: #0a0a0a; --accent-soft: #1a1a1a;
+    --danger: #ef4444; --success: #22c55e; --warning: #f59e0b;
+    --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.4);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,.4), 0 16px 48px rgba(0,0,0,.6);
+  }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 4px; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; flex-wrap: wrap; gap: 12px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; text-decoration: none; color: var(--text); }
+  .logo-mark { width: 28px; height: 28px; border-radius: 7px; overflow: hidden; flex-shrink: 0; }
+  .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
+  .header-actions { display: flex; gap: 10px; align-items: center; }
+  .btn-sm { padding: 9px 16px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all .2s; }
+  .btn-sm:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+  .theme-btn { width: 36px; height: 36px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; display: grid; place-items: center; font-size: 15px; transition: all .2s; }
+  .theme-btn:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+
+  .loading-state, .error-state { text-align: center; padding: 80px 24px; }
+  .loading-spinner { width: 40px; height: 40px; border: 3px solid var(--border); border-top-color: var(--text); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-state p, .error-state p { color: var(--dim); font-size: 15px; }
+  .error-state .icon { font-size: 56px; margin-bottom: 16px; }
+  .error-state h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .error-state a { display: inline-block; margin-top: 20px; padding: 13px 26px; border-radius: 10px; background: var(--accent); color: var(--accent-text); font-size: 14px; font-weight: 600; text-decoration: none; }
+
+  /* Профиль */
+  .profile-hero {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 32px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .profile-avatar {
+    width: 110px; height: 110px; border-radius: 50%;
+    overflow: hidden; background: var(--accent-soft);
+    display: grid; place-items: center;
+    color: var(--text); font-weight: 800; font-size: 44px;
+    margin: 0 auto 20px;
+    box-shadow: var(--shadow);
+    border: 4px solid var(--bg);
+  }
+  .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .profile-name {
+    font-size: clamp(24px, 4vw, 32px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .profile-id {
+    font-size: 12px;
+    color: var(--dim-2);
+    font-family: ui-monospace, monospace;
+    margin-bottom: 16px;
+  }
+  .profile-meta {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: var(--dim);
+    margin-bottom: 20px;
+  }
+  .profile-meta span { display: inline-flex; align-items: center; gap: 5px; }
+  .profile-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: none;
+    background: var(--accent);
+    color: var(--accent-text);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { opacity: .85; transform: translateY(-1px); }
+  .btn-secondary {
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-secondary:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+
+  /* Статистика */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .stat-num {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--dim);
+    margin-top: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+  }
+
+  /* Секции */
+  .section { margin-bottom: 24px; }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .section-head h2 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+  }
+  .section-head .count {
+    font-size: 13px;
+    color: var(--dim);
+    font-weight: 500;
+  }
+
+  /* Карточки серверов */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    transition: all .25s;
+    text-decoration: none;
+    color: var(--text);
+    box-shadow: var(--shadow);
+  }
+  .card:hover {
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .avatar {
+    width: 44px; height: 44px; border-radius: 11px;
+    overflow: hidden; background: var(--accent-soft);
+    display: grid; place-items: center;
+    color: var(--text); font-weight: 700; font-size: 17px; flex-shrink: 0;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .card h3 { font-size: 15px; font-weight: 700; letter-spacing: -.2px; }
+  .meta { font-size: 12px; color: var(--dim); margin-top: 2px; }
+  .card p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--dim);
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tags { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tag {
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--dim);
+    font-weight: 500;
+  }
+
+  /* Пустое состояние */
+  .empty-state {
+    text-align: center;
+    padding: 60px 24px;
+    background: var(--card);
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+  }
+  .empty-state .icon { font-size: 56px; margin-bottom: 16px; }
+  .empty-state h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+  .empty-state p { font-size: 14px; color: var(--dim); line-height: 1.5; }
+
+  /* Тост */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--text);
+    color: var(--bg);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: var(--shadow-lg);
+    transition: transform .3s;
+    z-index: 200;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <a class="logo" href="https://kirill12633.github.io/partnership.metro.new/">
+      <div class="logo-mark"><img src="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png" alt="Metro New"></div>
+      Metro New Partnership
+    </a>
+    <div class="header-actions">
+      <a class="btn-sm" href="https://kirill12633.github.io/partnership.metro.new/">← Каталог</a>
+      <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+    </div>
+  </div>
+
+  <div id="loadingState" class="loading-state">
+    <div class="loading-spinner"></div>
+    <p>Загрузка профиля...</p>
+  </div>
+
+  <div id="errorState" class="error-state" style="display:none">
+    <div class="icon">😕</div>
+    <h2 id="errorTitle">Профиль не найден</h2>
+    <p id="errorText">Возможно, пользователь не существует или удалён.</p>
+    <a href="https://kirill12633.github.io/partnership.metro.new/">Вернуться в каталог</a>
+  </div>
+
+  <div id="content" style="display:none">
+    <!-- Профиль -->
+    <div class="profile-hero">
+      <div class="profile-avatar" id="profileAvatar"></div>
+      <h1 class="profile-name" id="profileName">—</h1>
+      <div class="profile-id" id="profileId">—</div>
+      <div class="profile-meta" id="profileMeta"></div>
+      <div class="profile-actions" id="profileActions"></div>
+    </div>
+
+    <!-- Статистика -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num" id="statServers">—</div>
+        <div class="stat-label">Серверов</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="statMembers">—</div>
+        <div class="stat-label">Участников</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="statViews">—</div>
+        <div class="stat-label">Просмотров</div>
+      </div>
+    </div>
+
+    <!-- Серверы -->
+    <div class="section">
+      <div class="section-head">
+        <h2>Серверы</h2>
+        <span class="count" id="serversCount">0</span>
+      </div>
+      <div class="grid" id="serversGrid"></div>
+      <div class="empty-state" id="emptyState" style="display:none">
+        <div class="icon">📭</div>
+        <h2>Нет серверов</h2>
+        <p>У этого пользователя пока нет одобренных серверов в каталоге.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+  const SUPABASE_URL = 'https://bwuozoqhdklbqmydj.supabase.co'.replace('klbqmydj', 'klbucjqmydj');
+  const SUPABASE_KEY = 'sb_publishable_UjwfHz_j8SSpkqaTpqR87w_HSlswxaQ';
+  const SITE_URL = 'https://kirill12633.github.io/partnership.metro.new';
+
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // Тема
+  const themeBtn = document.getElementById('themeBtn');
+  const savedTheme = localStorage.getItem('metro_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  themeBtn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('metro_theme', next);
+    themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+  });
+
+  const loadingState = document.getElementById('loadingState');
+  const errorState = document.getElementById('errorState');
+  const errorTitle = document.getElementById('errorTitle');
+  const errorText = document.getElementById('errorText');
+  const content = document.getElementById('content');
+  const toast = document.getElementById('toast');
+
+  let profile = null;
+  let servers = [];
+  let isOwnProfile = false;
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  }
+
+  function formatDate(iso) {
+    if (!iso) return '—';
+    return new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  async function loadProfile() {
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id');
+
+    if (!id) return showError('Не указан ID пользователя', 'Откройте профиль из страницы сервера.');
+
+    // Проверяем, свой ли это профиль
+    const { data: { session } } = await supabase.auth.getSession();
+    isOwnProfile = session?.user?.id === id;
+
+    // Загружаем профиль (без email)
+    const { data: p, error } = await supabase
+      .from('profiles_public')
+      .select('id, username, avatar_url, discord_id, created_at')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (error || !p) return showError('Профиль не найден', 'Возможно, пользователь не существует или удалён.');
+
+    profile = p;
+
+    // Загружаем одобренные серверы пользователя
+    const { data: s } = await supabase
+      .from('servers')
+      .select('id, name, description, category, language, members, avatar_url, views_count, is_nsfw, created_at')
+      .eq('owner_id', id)
+      .eq('moderation_status', 'approved')
+      .is('deleted_at', null)
+      .eq('status', 'active')
+      .order('members', { ascending: false });
+
+    servers = s || [];
+
+    render();
+
+    loadingState.style.display = 'none';
+    content.style.display = 'block';
+  }
+
+  function showError(title, text) {
+    loadingState.style.display = 'none';
+    errorTitle.textContent = title;
+    errorText.textContent = text;
+    errorState.style.display = 'block';
+  }
+
+  function render() {
+    const p = profile;
+
+    // SEO
+    document.title = `${p.username || 'Пользователь'} — Metro New Partnership`;
+    document.querySelector('meta[property="og:title"]').setAttribute('content', `${p.username || 'Пользователь'} — Metro New Partnership`);
+    document.querySelector('meta[property="og:description"]').setAttribute('content', `Профиль владельца Discord-серверов. ${servers.length} серверов в каталоге.`);
+
+    // Аватар
+    document.getElementById('profileAvatar').innerHTML = p.avatar_url
+      ? `<img src="${escapeHtml(p.avatar_url)}" alt="${escapeHtml(p.username)}">`
+      : escapeHtml((p.username || '?')[0].toUpperCase());
+
+    // Имя
+    document.getElementById('profileName').textContent = p.username || 'Пользователь';
+
+    // Discord ID
+    document.getElementById('profileId').textContent = p.discord_id ? `Discord ID: ${p.discord_id}` : `ID: ${p.id.slice(0, 8)}...`;
+
+    // Мета
+    const meta = [];
+    if (p.created_at) meta.push(`<span>📅 С нами с ${formatDate(p.created_at)}</span>`);
+    if (servers.length) meta.push(`<span>🎯 ${servers.length} ${servers.length === 1 ? 'сервер' : servers.length < 5 ? 'сервера' : 'серверов'}</span>`);
+    document.getElementById('profileMeta').innerHTML = meta.join('');
+
+    // Кнопки
+    const actions = [];
+    if (isOwnProfile) {
+      actions.push(`<a class="btn-primary" href="${SITE_URL}/dashboard/">Мои серверы</a>`);
+      actions.push(`<a class="btn-secondary" href="${SITE_URL}/auth/">Настройки аккаунта</a>`);
+    } else {
+      actions.push(`<button class="btn-secondary" id="copyProfileBtn">🔗 Скопировать ссылку</button>`);
+    }
+    document.getElementById('profileActions').innerHTML = actions.join('');
+
+    // Копировать ссылку
+    const copyBtn = document.getElementById('copyProfileBtn');
+    if (copyBtn) {
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast('Ссылка на профиль скопирована');
+        } catch { showToast('Не удалось скопировать'); }
+      });
+    }
+
+    // Статистика
+    const totalMembers = servers.reduce((sum, s) => sum + (s.members || 0), 0);
+    const totalViews = servers.reduce((sum, s) => sum + (s.views_count || 0), 0);
+
+    document.getElementById('statServers').textContent = servers.length;
+    document.getElementById('statMembers').textContent = totalMembers >= 1000
+      ? (totalMembers / 1000).toFixed(1) + 'K'
+      : totalMembers;
+    document.getElementById('statViews').textContent = totalViews >= 1000
+      ? (totalViews / 1000).toFixed(1) + 'K'
+      : totalViews;
+
+    // Серверы
+    document.getElementById('serversCount').textContent = `${servers.length} ${servers.length === 1 ? 'сервер' : servers.length < 5 ? 'сервера' : 'серверов'}`;
+
+    if (!servers.length) {
+      document.getElementById('serversGrid').innerHTML = '';
+      document.getElementById('emptyState').style.display = 'block';
+      return;
+    }
+
+    document.getElementById('emptyState').style.display = 'none';
+    document.getElementById('serversGrid').innerHTML = servers.map(s => serverCard(s)).join('');
+  }
+
+  function serverCard(s) {
+    const avatar = s.avatar_url
+      ? `<img src="${escapeHtml(s.avatar_url)}" alt="">`
+      : escapeHtml(s.name[0].toUpperCase());
+    const nsfw = s.is_nsfw ? '<span class="tag" style="background:#fef2f2;color:var(--danger);border:1px solid #fecaca">18+</span>' : '';
+
+    return `
+      <a class="card" href="${SITE_URL}/server/?id=${s.id}">
+        <div class="card-top">
+          <div class="avatar">${avatar}</div>
+          <div>
+            <h3>${escapeHtml(s.name)}</h3>
+            <div class="meta">👥 ${(s.members || 0).toLocaleString('ru-RU')} · ${escapeHtml((s.language || '').toUpperCase())}</div>
+          </div>
+        </div>
+        <p>${escapeHtml((s.description || '').slice(0, 110))}${(s.description || '').length > 110 ? '...' : ''}</p>
+        <div class="card-bottom">
+          <div class="tags">
+            <span class="tag">${escapeHtml(s.category)}</span>
+            ${nsfw}
+          </div>
+        </div>
+      </a>
+    `;
+  }
+
+  loadProfile();
+</script>
+</body>
+</html>
