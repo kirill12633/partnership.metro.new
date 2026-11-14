@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Политика DMCA — Metro New Partnership</title>
+<link rel="icon" type="image/png" href="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #fafafa; --bg-2: #fff; --border: #e8e8ef;
+    --text: #0f0f1a; --dim: #6b6b80; --dim-2: #9a9ab0;
+    --accent: #6366f1; --accent-2: #8b5cf6; --accent-soft: #eef0ff;
+    --danger: #dc2626; --success: #16a34a; --warning: #d97706;
+    --shadow-md: 0 4px 16px rgba(15,15,26,.06);
+    --font: 'Inter', system-ui, sans-serif;
+  }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 85% 10%, rgba(99,102,241,.05), transparent 40%); }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 32px 20px 100px; }
+
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; flex-wrap: wrap; gap: 12px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; text-decoration: none; color: var(--text); }
+  .logo-mark { width: 30px; height: 30px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+  .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
+  .back-link { font-size: 13px; color: var(--dim); text-decoration: none; padding: 8px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg-2); transition: all .2s; }
+  .back-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  .page-title { font-size: clamp(28px, 4vw, 38px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 10px; line-height: 1.15; }
+  .page-meta { font-size: 13px; color: var(--dim-2); margin-bottom: 32px; }
+
+  .content { background: var(--bg-2); border: 1px solid var(--border); border-radius: 20px; padding: 40px; box-shadow: var(--shadow-md); }
+  @media (max-width: 600px) { .content { padding: 26px 20px; } }
+
+  .content h2 { font-size: 20px; font-weight: 800; letter-spacing: -.5px; margin: 32px 0 14px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .content h3 { font-size: 16px; font-weight: 700; margin: 22px 0 10px; }
+  .content p { font-size: 14.5px; line-height: 1.7; color: var(--text); margin-bottom: 14px; }
+  .content ul, .content ol { margin: 0 0 16px 0; padding-left: 24px; }
+  .content li { font-size: 14.5px; line-height: 1.7; margin-bottom: 8px; }
+  .content a { color: var(--accent); text-decoration: none; }
+  .content a:hover { text-decoration: underline; }
+  .content strong { font-weight: 700; }
+  .content code { background: var(--bg); padding: 2px 6px; border-radius: 5px; font-size: 13px; font-family: ui-monospace, monospace; }
+
+  .info-box { background: var(--accent-soft); border: 1px solid rgba(99,102,241,.18); border-radius: 12px; padding: 16px 18px; margin: 18px 0; font-size: 14px; line-height: 1.6; }
+  .info-box strong { color: var(--accent); }
+  .info-box.warning { background: #fffbeb; border-color: #fde68a; }
+  .info-box.warning strong { color: var(--warning); }
+  .info-box.danger { background: #fef2f2; border-color: #fecaca; }
+  .info-box.danger strong { color: var(--danger); }
+
+  .steps { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+  .step { display: flex; gap: 14px; padding: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; }
+  .step-num { width: 32px; height: 32px; border-radius: 9px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+  .step-body { flex: 1; }
+  .step-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .step-desc { font-size: 13.5px; color: var(--dim); line-height: 1.55; }
+
+  .toc { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; margin-bottom: 32px; }
+  .toc h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--dim-2); margin-bottom: 12px; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { font-size: 13.5px; line-height: 1.6; margin-bottom: 6px; }
+  .toc a { color: var(--text); text-decoration: none; }
+  .toc a:hover { color: var(--accent); }
+
+  .template-box { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin: 16px 0; font-family: ui-monospace, monospace; font-size: 13px; line-height: 1.7; color: var(--text); white-space: pre-wrap; overflow-x: auto; }
+
+  .footer-note { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 13px; color: var(--dim); text-align: center; line-height: 1.6; }
+  .footer-note a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <a class="logo" href="https://kirill12633.github.io/partnership.metro.new/">
+      <div class="logo-mark"><img src="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png" alt="Metro New"></div>
+      Metro New Partnership
+    </a>
+    <a class="back-link" href="https://kirill12633.github.io/partnership.metro.new/">← На главную</a>
+  </div>
+
+  <h1 class="page-title">Политика DMCA</h1>
+  <div class="page-meta">Последнее обновление: 14 ноября 2026 г.</div>
+
+  <div class="content">
+
+    <div class="info-box">
+      <strong>DMCA</strong> (Digital Millennium Copyright Act) — закон об авторском праве. Эта страница объясняет, как сообщить о нарушении авторских прав на платформе <strong>Metro New Partnership</strong> и что произойдёт дальше.
+    </div>
+
+    <div class="toc">
+      <h4>Содержание</h4>
+      <ol>
+        <li><a href="#general">Общие положения</a></li>
+        <li><a href="#what">Что считается нарушением</a></li>
+        <li><a href="#how">Как подать жалобу</a></li>
+        <li><a href="#requirements">Требования к жалобе</a></li>
+        <li><a href="#process">Что происходит после жалобы</a></li>
+        <li><a href="#counter">Контраведомление</a></li>
+        <li><a href="#repeat">Повторные нарушения</a></li>
+        <li><a href="#false">Ложные жалобы</a></li>
+        <li><a href="#contacts">Контакты</a></li>
+      </ol>
+    </div>
+
+    <h2 id="general">1. Общие положения</h2>
+    <p>Платформа <strong>Metro New Partnership</strong> уважает интеллектуальную собственность и ожидает того же от пользователей. Мы оперативно реагируем на обоснованные жалобы о нарушении авторских прав.</p>
+    <p>Эта политика соответствует требованиям DMCA (США) и применимым нормам законодательства РФ об авторском праве.</p>
+    <p>Если вы правообладатель и считаете, что ваш контент размещён на Платформе без разрешения — сообщите нам, и мы примем меры.</p>
+
+    <h2 id="what">2. Что считается нарушением</h2>
+    <p>Нарушением авторских прав считается размещение на Платформе контента, который вам не принадлежит, без разрешения правообладателя:</p>
+    <ul>
+      <li><strong>Изображения</strong> — чужие арты, логотипы, фотографии, используемые как фото сервера.</li>
+      <li><strong>Тексты</strong> — скопированные описания, статьи, чужие тексты в описании сервера.</li>
+      <li><strong>Названия</strong> — использование чужих брендов, торговых марок без разрешения.</li>
+      <li><strong>Ссылки</strong> — приглашения на серверы, распространяющие пиратский контент.</li>
+    </ul>
+    <p><strong>Не считается нарушением:</strong></p>
+    <ul>
+      <li>Цитирование с указанием источника (в разумных пределах).</li>
+      <li>Использование контента по лицензии Creative Commons или аналогичной.</li>
+      <li>Пародия, обзор, критика (fair use, в рамках закона).</li>
+      <li>Контент, который вы создали сами.</li>
+    </ul>
+
+    <h2 id="how">3. Как подать жалобу</h2>
+    <p>Если вы обнаружили нарушение — напишите нам. Вот пошаговый процесс:</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Найдите нарушение</div>
+          <div class="step-desc">Скопируйте ссылку на страницу сервера или на конкретный контент, который нарушает ваши права.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Подготовьте доказательства</div>
+          <div class="step-desc">Ссылка на оригинал, скриншоты, документы о праве собственности (если есть).</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Напишите нам</div>
+          <div class="step-desc">Отправьте жалобу в Discord-сервер поддержки или на email (см. раздел 9). Укажите все данные из раздела 4.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Дождитесь ответа</div>
+          <div class="step-desc">Мы рассмотрим жалобу в течение 7 рабочих дней и сообщим о решении.</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 id="requirements">4. Требования к жалобе</h2>
+    <p>Чтобы мы могли оперативно рассмотреть жалобу, она должна содержать:</p>
+    <ol>
+      <li><strong>Ваши данные</strong> — имя, контакт для связи (Discord, email).</li>
+      <li><strong>Описание нарушения</strong> — что именно нарушено и где (ссылка на страницу сервера).</li>
+      <li><strong>Доказательства права</strong> — ссылка на оригинал, документ, скриншот с датой публикации.</li>
+      <li><strong>Подтверждение добросовестности</strong> — заявление: «Я добросовестно считаю, что использование контента не разрешено правообладателем».</li>
+      <li><strong>Подтверждение точности</strong> — заявление: «Информация в жалобе точна, и я являюсь правообладателем или уполномоченным представителем».</li>
+      <li><strong>Подпись</strong> — электронная подпись (ваше имя, напечатанное в конце).</li>
+    </ol>
+
+    <h3>Шаблон жалобы</h3>
+    <p>Скопируйте и заполните:</p>
+    <div class="template-box">Кому: Metro New Partnership (DMCA Agent)
+
+Я, [ваше имя], являюсь правообладателем контента, размещённого по адресу:
+[ссылка на страницу сервера или контент]
+
+Нарушение: [опишите, что именно нарушено]
+Оригинал: [ссылка на оригинал / доказательство]
+
+Заявляю добросовестно, что использование контента не разрешено правообладателем, его агентом или законом.
+
+Заявляю, что информация в жалобе точна, и я являюсь правообладателем или уполномоченным представителем.
+
+Контакт: [Discord / email]
+Дата: [дата]
+Подпись: [ваше имя]</div>
+
+    <h2 id="process">5. Что происходит после жалобы</h2>
+    <p>После получения жалобы мы:</p>
+    <ol>
+      <li><strong>Проверяем</strong> жалобу в течение 7 рабочих дней.</li>
+      <li><strong>Связываемся</strong> с владельцем сервера, если жалоба обоснована.</li>
+      <li><strong>Удаляем</strong> контент или сервер, если нарушение подтверждено.</li>
+      <li><strong>Уведомляем</strong> вас о результате.</li>
+    </ol>
+    <p><strong>Сроки:</strong></p>
+    <ul>
+      <li>Проверка жалобы — до 7 рабочих дней.</li>
+      <li>Удаление контента — до 3 рабочих дней после подтверждения.</li>
+      <li>Уведомление заявителя — в течение 1 рабочего дня после решения.</li>
+    </ul>
+    <div class="info-box warning">
+      <strong>Важно:</strong> мы не удаляем контент по первому требованию. Сначала проверяем, что нарушение реально. Это защищает и правообладателей, и владельцев серверов от ложных жалоб.
+    </div>
+
+    <h2 id="counter">6. Контраведомление</h2>
+    <p>Если ваш сервер или контент был удалён по жалобе DMCA, но вы считаете, что это ошибка, вы можете подать контраведомление.</p>
+    <p>Контраведомление должно содержать:</p>
+    <ul>
+      <li>Ваши данные и контакт.</li>
+      <li>Ссылку на удалённый контент и описание, что именно удалено.</li>
+      <li>Заявление: «Я добросовестно считаю, что контент был удалён по ошибке или неправильной идентификации».</li>
+      <li>Согласие на подсудность (если применимо).</li>
+      <li>Подпись.</li>
+    </ul>
+    <p>После получения контраведомления мы:</p>
+    <ol>
+      <li>Уведомляем заявителя о контраведомлении.</li>
+      <li>Даём заявителю 10 рабочих дней на подачу иска в суд.</li>
+      <li>Если иск не подан — восстанавливаем контент.</li>
+    </ol>
+
+    <h2 id="repeat">7. Повторные нарушения</h2>
+    <p>Пользователи, которые систематически нарушают авторские права, будут заблокированы.</p>
+    <ul>
+      <li><strong>1-е нарушение</strong> — удаление контента, предупреждение.</li>
+      <li><strong>2-е нарушение</strong> — удаление сервера, предупреждение.</li>
+      <li><strong>3-е нарушение</strong> — блокировка аккаунта.</li>
+    </ul>
+    <p>Мы ведём учёт нарушений и можем заблокировать аккаунт раньше при грубых нарушениях.</p>
+
+    <h2 id="false">8. Ложные жалобы</h2>
+    <div class="info-box danger">
+      <strong>Внимание:</strong> подача заведомо ложной жалобы DMCA является нарушением закона и влечёт ответственность. Если вы подаёте жалобу, вы подтверждаете, что действуете добросовестно и информация точна.
+    </div>
+    <p>За ложные жалобы мы можем:</p>
+    <ul>
+      <li>Отклонить жалобу без рассмотрения.</li>
+      <li>Заблокировать аккаунт заявителя.</li>
+      <li>Передать информацию правоохранительным органам (если есть признаки состава преступления).</li>
+    </ul>
+
+    <h2 id="contacts">9. Контакты</h2>
+    <p>Для подачи жалоб DMCA и контраведомлений:</p>
+    <ul>
+      <li><strong>Discord-сервер:</strong> <a href="https://discord.com/invite/WjGZBs3HMX" target="_blank" rel="noopener">discord.gg/WjGZBs3HMX</a> — канал #dmca</li>
+      <li><strong>Telegram:</strong> <a href="https://t.me/Metro_New_Official" target="_blank" rel="noopener">@Metro_New_Official</a></li>
+      <li><strong>Email:</strong>metro.new.help@gmail.com</li>
+    </ul>
+    <p><strong>DMCA Agent:</strong> Kirill, основатель платформы.</p>
+    <p>Мы отвечаем на жалобы в течение 30 рабочих дней.</p>
+
+    <div class="info-box">
+      <strong>Совет:</strong> перед подачей жалобы попробуйте связаться с владельцем сервера напрямую — возможно, он удалит контент без формальной процедуры. Это быстрее для обеих сторон.
+    </div>
+
+    <div class="footer-note">
+      © 2026 Metro New Partnership. Все права защищены.<br>
+      <a href="https://kirill12633.github.io/partnership.metro.new/terms/">Пользовательское соглашение</a> ·
+      <a href="https://kirill12633.github.io/partnership.metro.new/privacy/">Политика конфиденциальности</a> ·
+      <a href="https://kirill12633.github.io/partnership.metro.new/rules/">Правила размещения</a>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
