@@ -284,34 +284,30 @@
     return new Date(iso).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' });
   }
 
-  // ===== Проверка админа =====
-  async function checkAdmin() {
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session?.user) {
-      authRequired.classList.add('show');
-      adminWrap.style.display = 'none';
-      return;
-    }
-    currentUser = session.user;
-
-    // Проверяем, есть ли в admins
-    const { data: admin } = await supabase
-      .from('admins')
-      .select('user_id')
-      .eq('user_id', currentUser.id)
-      .maybeSingle();
-
-    if (!admin) {
-      noAccess.classList.add('show');
-      adminWrap.style.display = 'none';
-      return;
-    }
-
-    authRequired.classList.remove('show');
-    noAccess.classList.remove('show');
-    adminWrap.style.display = 'block';
-    await loadServers();
+ // ===== Проверка админа =====
+async function checkAdmin() {
+  const { data: { session } } = await supabase.auth.getSession();
+  if (!session?.user) {
+    authRequired.classList.add('show');
+    adminWrap.style.display = 'none';
+    return;
   }
+  currentUser = session.user;
+
+  // Проверяем через функцию is_admin (обходит рекурсию RLS)
+  const { data: isAdmin, error: adminErr } = await supabase.rpc('is_admin');
+
+  if (adminErr || !isAdmin) {
+    noAccess.classList.add('show');
+    adminWrap.style.display = 'none';
+    return;
+  }
+
+  authRequired.classList.remove('show');
+  noAccess.classList.remove('show');
+  adminWrap.style.display = 'block';
+  await loadServers();
+}
 
   // ===== Загрузка серверов =====
   async function loadServers() {
