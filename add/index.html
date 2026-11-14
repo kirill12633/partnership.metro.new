@@ -11,34 +11,35 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --bg: #fafafa; --bg-2: #fff; --border: #e8e8ef;
-    --text: #0f0f1a; --dim: #6b6b80; --dim-2: #9a9ab0;
-    --accent: #6366f1; --accent-2: #8b5cf6; --accent-soft: #eef0ff;
+    --bg: #f7f7f8; --bg-2: #f0f0f2; --card: #ffffff;
+    --border: #e4e4e7; --border-hover: #d4d4d8;
+    --text: #0a0a0a; --dim: #6b6b70; --dim-2: #9a9aa0;
+    --accent: #111111; --accent-text: #ffffff; --accent-soft: #ebebee;
     --danger: #dc2626; --success: #16a34a; --warning: #d97706;
-    --shadow-md: 0 4px 16px rgba(15,15,26,.06);
-    --shadow-lg: 0 12px 40px rgba(15,15,26,.08);
+    --shadow: 0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,.06), 0 16px 48px rgba(0,0,0,.06);
     --font: 'Inter', system-ui, sans-serif;
   }
-  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; background-image: radial-gradient(circle at 15% 10%, rgba(99,102,241,.06), transparent 40%); }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
   .wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 120px; }
 
-  .progress-bar { display: flex; margin-bottom: 28px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 14px; padding: 6px; overflow: hidden; }
+  .progress-bar { display: flex; margin-bottom: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px; overflow: hidden; }
   .progress-step { flex: 1; text-align: center; padding: 10px 6px; font-size: 12px; font-weight: 600; color: var(--dim-2); border-radius: 10px; transition: all .3s; }
-  .progress-step.active { background: var(--accent); color: #fff; }
-  .progress-step.done { color: var(--accent); }
+  .progress-step.active { background: var(--accent); color: var(--accent-text); }
+  .progress-step.done { color: var(--text); }
   .progress-step.done::after { content: ' ✓'; }
 
   .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
   .logo { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; text-decoration: none; color: var(--text); }
   .logo-mark { width: 30px; height: 30px; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
   .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
-  .back-link { font-size: 13px; color: var(--dim); text-decoration: none; padding: 8px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg-2); transition: all .2s; }
-  .back-link:hover { border-color: var(--accent); color: var(--accent); }
+  .back-link { font-size: 13px; color: var(--dim); text-decoration: none; padding: 8px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); transition: all .2s; }
+  .back-link:hover { border-color: var(--border-hover); color: var(--text); }
 
   h1 { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
   .sub { font-size: 14px; color: var(--dim); margin-bottom: 24px; line-height: 1.5; }
 
-  .card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 18px; padding: 26px; box-shadow: var(--shadow-md); margin-bottom: 18px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 26px; box-shadow: var(--shadow); margin-bottom: 16px; }
   .card h2 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
   .card .hint { font-size: 13px; color: var(--dim); margin-bottom: 18px; line-height: 1.5; }
 
@@ -49,13 +50,15 @@
   .hint-small { font-size: 12px; color: var(--dim-2); margin-top: 4px; line-height: 1.4; }
   .field-error { font-size: 12px; color: var(--danger); margin-top: 4px; display: none; }
   .field-error.show { display: block; }
+  .field-warning { font-size: 12px; color: var(--warning); margin-top: 4px; display: none; }
+  .field-warning.show { display: block; }
 
   input[type="text"], input[type="number"], input[type="url"], textarea, select {
-    width: 100%; padding: 12px 15px; border-radius: 11px; border: 1px solid var(--border);
+    width: 100%; padding: 12px 15px; border-radius: 10px; border: 1px solid var(--border);
     background: var(--bg); color: var(--text); font-size: 14px; font-family: inherit;
     outline: none; transition: all .2s;
   }
-  input:focus, textarea:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(99,102,241,.08); background: var(--bg-2); }
+  input:focus, textarea:focus, select:focus { border-color: var(--border-hover); background: var(--card); }
   input.error, textarea.error { border-color: var(--danger); }
   textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -63,57 +66,57 @@
 
   .photo-drop { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .photo-preview {
-    width: 100px; height: 100px; border-radius: 16px; overflow: hidden;
+    width: 96px; height: 96px; border-radius: 14px; overflow: hidden;
     background: var(--accent-soft); display: grid; place-items: center;
-    font-size: 32px; font-weight: 700; color: var(--accent); flex-shrink: 0;
+    font-size: 30px; font-weight: 700; color: var(--dim); flex-shrink: 0;
     border: 2px dashed var(--border); cursor: pointer; transition: all .2s; position: relative;
   }
   .photo-preview.dragover { border-color: var(--accent); background: var(--accent-soft); transform: scale(1.03); }
-  .photo-preview:hover { border-color: var(--accent); }
+  .photo-preview:hover { border-color: var(--border-hover); }
   .photo-preview img { width: 100%; height: 100%; object-fit: cover; }
   .photo-info { flex: 1; min-width: 180px; }
-  .photo-btn { padding: 9px 16px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; }
-  .photo-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .photo-btn { padding: 9px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; }
+  .photo-btn:hover { border-color: var(--border-hover); background: var(--accent-soft); }
   .photo-btn.remove { color: var(--danger); border-color: #fecaca; margin-left: 6px; }
   .photo-btn.remove:hover { background: #fef2f2; }
 
   .checkboxes { display: flex; flex-wrap: wrap; gap: 8px; }
   .checkbox-chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); font-size: 13px; font-weight: 500; cursor: pointer; transition: all .2s; user-select: none; }
-  .checkbox-chip:hover { border-color: var(--accent); }
+  .checkbox-chip:hover { border-color: var(--border-hover); }
   .checkbox-chip input { display: none; }
-  .checkbox-chip.checked { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .checkbox-chip.checked { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
   .checkbox-chip.legal { border-radius: 10px; padding: 12px 14px; width: 100%; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; font-weight: 500; }
   .checkbox-chip.legal input { display: inline-block; margin-top: 2px; accent-color: var(--accent); flex-shrink: 0; }
   .checkbox-chip.legal.checked { background: var(--accent-soft); border-color: var(--accent); color: var(--text); }
-  .checkbox-chip.legal a { color: var(--accent); }
+  .checkbox-chip.legal a { color: var(--text); text-decoration: underline; }
 
   .contact-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
   .contact-row select { flex: 0 0 150px; }
   .contact-row input { flex: 1; }
-  .contact-row .remove-contact { padding: 12px 14px; border-radius: 11px; border: 1px solid var(--border); background: var(--bg); color: var(--danger); cursor: pointer; font-family: inherit; font-size: 18px; line-height: 1; transition: all .2s; flex-shrink: 0; }
+  .contact-row .remove-contact { padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--danger); cursor: pointer; font-family: inherit; font-size: 18px; line-height: 1; transition: all .2s; flex-shrink: 0; }
   .contact-row .remove-contact:hover { background: #fef2f2; border-color: #fecaca; }
   .add-contact { padding: 10px 16px; border-radius: 10px; border: 1px dashed var(--border); background: transparent; color: var(--dim); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; width: 100%; }
-  .add-contact:hover { border-color: var(--accent); color: var(--accent); }
+  .add-contact:hover { border-color: var(--border-hover); color: var(--text); background: var(--accent-soft); }
 
-  .tags-input-wrap { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; border-radius: 11px; border: 1px solid var(--border); background: var(--bg); min-height: 46px; align-items: center; }
-  .tags-input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(99,102,241,.08); }
-  .tag-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: 12px; font-weight: 600; }
+  .tags-input-wrap { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); min-height: 46px; align-items: center; }
+  .tags-input-wrap:focus-within { border-color: var(--border-hover); background: var(--card); }
+  .tag-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--text); font-size: 12px; font-weight: 600; }
   .tag-pill button { border: none; background: none; color: inherit; cursor: pointer; font-size: 14px; padding: 0; line-height: 1; }
   .tags-input-wrap input { border: none; background: none; flex: 1; min-width: 100px; padding: 4px 6px; font-size: 13px; outline: none; box-shadow: none; }
   .tags-input-wrap input:focus { box-shadow: none; }
 
   .wizard-nav { display: flex; gap: 12px; margin-top: 24px; }
-  .btn-primary { flex: 1; padding: 15px 28px; border-radius: 12px; border: none; background: var(--accent); color: #fff; font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .25s; box-shadow: 0 4px 20px rgba(99,102,241,.3); display: flex; align-items: center; justify-content: center; gap: 10px; }
-  .btn-primary:hover:not(:disabled) { background: var(--accent-2); transform: translateY(-2px); }
-  .btn-primary:disabled { opacity: .6; cursor: not-allowed; }
-  .btn-secondary { padding: 15px 28px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-2); color: var(--text); font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; }
-  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+  .btn-primary { flex: 1; padding: 15px 28px; border-radius: 10px; border: none; background: var(--accent); color: var(--accent-text); font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .25s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .btn-primary:hover:not(:disabled) { opacity: .85; transform: translateY(-1px); }
+  .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-secondary { padding: 15px 28px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; }
+  .btn-secondary:hover { border-color: var(--border-hover); background: var(--accent-soft); }
   .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .8s linear infinite; display: none; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .loading .spinner { display: block; }
   .loading .btn-text { display: none; }
 
-  .msg { padding: 14px 18px; border-radius: 12px; font-size: 14px; margin-bottom: 18px; line-height: 1.5; display: none; }
+  .msg { padding: 14px 18px; border-radius: 10px; font-size: 14px; margin-bottom: 16px; line-height: 1.5; display: none; }
   .msg.show { display: block; }
   .msg.error { background: #fef2f2; color: var(--danger); border: 1px solid #fecaca; }
   .msg.success { background: #f0fdf4; color: var(--success); border: 1px solid #bbf7d0; }
@@ -124,45 +127,109 @@
   .auth-required .icon { font-size: 48px; margin-bottom: 16px; }
   .auth-required h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
   .auth-required p { font-size: 14px; color: var(--dim); margin-bottom: 24px; line-height: 1.5; }
-  .auth-required a { display: inline-block; padding: 14px 28px; border-radius: 12px; background: #5865f2; color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; }
+  .auth-required a { display: inline-block; padding: 14px 28px; border-radius: 10px; background: var(--accent); color: var(--accent-text); font-size: 15px; font-weight: 600; text-decoration: none; }
 
   .success-screen { display: none; text-align: center; padding: 60px 24px; }
   .success-screen.show { display: block; }
   .success-screen .icon { font-size: 64px; margin-bottom: 16px; }
   .success-screen h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
   .success-screen p { font-size: 15px; color: var(--dim); margin-bottom: 28px; line-height: 1.6; max-width: 420px; margin-left: auto; margin-right: auto; }
-  .success-screen .details { background: var(--bg); border: 1px solid var(--border); border-radius: 14px; padding: 18px; text-align: left; max-width: 420px; margin: 0 auto 28px; }
+  .success-screen .details { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px; text-align: left; max-width: 420px; margin: 0 auto 28px; }
   .success-screen .details div { display: flex; justify-content: space-between; padding: 8px 0; font-size: 14px; border-bottom: 1px solid var(--border); }
   .success-screen .details div:last-child { border-bottom: none; }
   .success-screen .details span:first-child { color: var(--dim); }
   .success-screen .buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-  .guild-list { display: flex; flex-direction: column; gap: 8px; max-height: 340px; overflow-y: auto; padding: 4px; }
+  .guild-list { display: flex; flex-direction: column; gap: 8px; max-height: 360px; overflow-y: auto; padding: 4px; }
   .guild-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); cursor: pointer; transition: all .2s; }
-  .guild-item:hover { border-color: var(--accent); background: var(--bg-2); }
-  .guild-item.selected { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 3px rgba(99,102,241,.1); }
-  .guild-icon { width: 42px; height: 42px; border-radius: 12px; overflow: hidden; background: var(--accent); display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .guild-item:hover { border-color: var(--border-hover); background: var(--card); }
+  .guild-item.selected { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 3px rgba(0,0,0,.05); }
+  .guild-item.disabled { opacity: .5; cursor: not-allowed; }
+  .guild-item.disabled:hover { border-color: var(--border); background: var(--bg); }
+  .guild-icon { width: 44px; height: 44px; border-radius: 11px; overflow: hidden; background: var(--accent-soft); display: grid; place-items: center; color: var(--text); font-weight: 700; font-size: 16px; flex-shrink: 0; }
   .guild-icon img { width: 100%; height: 100%; object-fit: cover; }
   .guild-info { flex: 1; min-width: 0; }
   .guild-name { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .guild-meta { font-size: 12px; color: var(--dim); margin-top: 2px; }
-  .guild-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; background: #f0fdf4; color: var(--success); border: 1px solid #bbf7d0; font-weight: 600; flex-shrink: 0; }
+  .guild-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--text); border: 1px solid var(--border); font-weight: 600; flex-shrink: 0; }
+  .guild-badge.added { background: #fef2f2; color: var(--danger); border-color: #fecaca; }
   .guild-loading { text-align: center; padding: 32px; color: var(--dim); font-size: 14px; }
-  .guild-error { padding: 16px; border-radius: 12px; background: #fef2f2; border: 1px solid #fecaca; color: var(--danger); font-size: 13px; line-height: 1.5; }
+  .guild-error { padding: 20px; border-radius: 12px; background: #fef2f2; border: 1px solid #fecaca; color: var(--danger); font-size: 13px; line-height: 1.5; }
   .guild-error a { color: var(--danger); font-weight: 600; }
+
+  .rate-limit-box {
+    padding: 24px;
+    border-radius: 12px;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: var(--warning);
+    text-align: center;
+  }
+  .rate-limit-box .title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .rate-limit-box .timer {
+    font-size: 32px;
+    font-weight: 800;
+    font-family: ui-monospace, monospace;
+    color: var(--warning);
+    margin: 12px 0;
+  }
+  .rate-limit-box .desc {
+    font-size: 13px;
+    color: var(--dim);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .guild-empty {
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--bg);
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+  }
+  .guild-empty .icon { font-size: 48px; margin-bottom: 12px; }
+  .guild-empty h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .guild-empty p { font-size: 13px; color: var(--dim); line-height: 1.6; margin-bottom: 16px; }
+  .guild-empty a { font-size: 13px; color: var(--text); text-decoration: underline; }
+
+  .refresh-btn {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all .2s;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .refresh-btn:hover { border-color: var(--border-hover); background: var(--accent-soft); }
 
   .turnstile-wrap { margin: 16px 0; display: flex; justify-content: center; min-height: 65px; }
   .step { display: none; }
-  .step.active { display: block; animation: fadeIn .3s; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .step.active { display: block; }
 
-  .draft-notice { display: none; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 12px; background: #fffbeb; border: 1px solid #fde68a; color: var(--warning); font-size: 13px; margin-bottom: 18px; line-height: 1.4; flex-wrap: wrap; }
+  .draft-notice { display: none; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 10px; background: #fffbeb; border: 1px solid #fde68a; color: var(--warning); font-size: 13px; margin-bottom: 16px; line-height: 1.4; flex-wrap: wrap; }
   .draft-notice.show { display: flex; }
-  .draft-notice button { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--warning); background: transparent; color: var(--warning); font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .draft-notice button { padding: 6px 12px; border-radius: 6px; border: 1px solid var(--warning); background: transparent; color: var(--warning); font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
 
-  .delete-note { background: var(--bg); border: 1px dashed var(--border); border-radius: 12px; padding: 14px 16px; font-size: 13px; color: var(--dim); line-height: 1.55; margin-top: 16px; }
+  .delete-note { background: var(--bg); border: 1px dashed var(--border); border-radius: 10px; padding: 14px 16px; font-size: 13px; color: var(--dim); line-height: 1.55; margin-top: 16px; }
   .delete-note strong { color: var(--text); }
-  .delete-note a { color: var(--accent); text-decoration: none; }
+  .delete-note a { color: var(--text); }
+
+  .loading-indicator { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--text); border-radius: 50%; animation: spin .8s linear infinite; vertical-align: middle; margin-right: 8px; }
 </style>
 </head>
 <body>
@@ -187,7 +254,7 @@
   <div id="authRequired" class="auth-required">
     <div class="icon">🔒</div>
     <h2>Нужен вход</h2>
-    <p>Чтобы добавить сервер, войди через Discord. Это нужно, чтобы подтвердить, что ты владелец сервера.</p>
+    <p>Чтобы добавить сервер, войди через Discord.</p>
     <a href="https://kirill12633.github.io/partnership.metro.new/auth/">Войти через Discord</a>
   </div>
 
@@ -207,10 +274,13 @@
     <div class="step active" data-step="1">
       <div class="card">
         <h2>Твой сервер</h2>
-        <p class="hint">Выбери Discord-сервер, где у тебя есть права администратора. Если сервер уже добавлен — он будет помечен.</p>
+        <p class="hint">Выбери Discord-сервер, где у тебя есть права администратора.</p>
         <div id="guildList" class="guild-list">
           <div class="guild-loading">Загрузка серверов...</div>
         </div>
+        <button type="button" class="refresh-btn" id="refreshGuilds" style="display:none">
+          🔄 Обновить список
+        </button>
       </div>
     </div>
 
@@ -234,7 +304,7 @@
               <button type="button" class="photo-btn" id="photoBtn">Загрузить фото</button>
               <button type="button" class="photo-btn remove" id="photoRemove" style="display:none">Удалить</button>
               <input type="file" id="photoInput" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none">
-              <div class="hint-small">Перетащите файл в квадрат слева, или нажмите. PNG, JPG, WEBP, GIF. До 5 МБ.</div>
+              <div class="hint-small">PNG, JPG, WEBP, GIF. До 5 МБ.</div>
             </div>
           </div>
         </div>
@@ -272,6 +342,7 @@
             <label>Участников <span class="req">*</span></label>
             <input type="number" id="f-members" placeholder="Например, 1500" min="0">
             <div class="field-error" id="err-members"></div>
+            <div class="field-warning" id="warn-members"></div>
           </div>
           <div class="field">
             <label>Ссылка-приглашение <span class="req">*</span></label>
@@ -285,7 +356,7 @@
           <div class="tags-input-wrap" id="tagsWrap">
             <input type="text" id="tagInput" placeholder="Введи тег и нажми Enter">
           </div>
-          <div class="hint-small">До 8 тегов, без запрещённых слов.</div>
+          <div class="hint-small">До 8 тегов. Дубликаты объединяются автоматически.</div>
           <div class="field-error" id="err-tags"></div>
         </div>
       </div>
@@ -349,7 +420,7 @@
     <div class="step" data-step="5">
       <div class="card">
         <h2>Юридическая информация</h2>
-        <p class="hint">Обязательные подтверждения для размещения сервера</p>
+        <p class="hint">Обязательные подтверждения</p>
 
         <div class="field">
           <label class="checkbox-chip legal" id="chip-docs">
@@ -370,7 +441,7 @@
         <div class="field">
           <label class="checkbox-chip legal" id="chip-data">
             <input type="checkbox" id="f-data">
-            <span>Я даю <strong>согласие на обработку персональных данных</strong> (Discord ID, имя пользователя, аватар) в соответствии с <a href="https://kirill12633.github.io/partnership.metro.new/privacy/" target="_blank">Политикой конфиденциальности</a>.</span>
+            <span>Я даю <strong>согласие на обработку персональных данных</strong> (Discord ID, имя, аватар) в соответствии с <a href="https://kirill12633.github.io/partnership.metro.new/privacy/" target="_blank">Политикой конфиденциальности</a>.</span>
           </label>
           <div class="field-error" id="err-data"></div>
         </div>
@@ -394,7 +465,7 @@
         <div class="field">
           <label class="checkbox-chip legal" id="chip-nsfw">
             <input type="checkbox" id="f-nsfw">
-            <span>Сервер содержит контент <strong>18+ (NSFW)</strong>. Я подтверждаю, что это законно и соответствует правилам.</span>
+            <span>Сервер содержит контент <strong>18+ (NSFW)</strong>. Я подтверждаю, что это законно.</span>
           </label>
         </div>
 
@@ -410,7 +481,7 @@
         <div class="field-error" id="err-captcha"></div>
 
         <div class="delete-note">
-          <strong>Об удалении сервера.</strong> Вы можете удалить сервер в любой момент в <a href="https://kirill12633.github.io/partnership.metro.new/dashboard/">личном кабинете</a> без объяснения причин. После удаления сервер попадает в корзину на 30 дней, затем удаляется навсегда. Администрация также вправе удалить сервер при нарушении правил.
+          <strong>Об удалении сервера.</strong> Вы можете удалить сервер в любой момент в <a href="https://kirill12633.github.io/partnership.metro.new/dashboard/">личном кабинете</a> без объяснения причин. После удаления сервер попадает в корзину на 30 дней.
         </div>
       </div>
     </div>
@@ -443,7 +514,7 @@
   const SUPABASE_KEY = 'sb_publishable_UjwfHz_j8SSpkqaTpqR87w_HSlswxaQ';
   const AUTH_URL = 'https://kirill12633.github.io/partnership.metro.new/auth/';
   const TURNSTILE_SITE_KEY = '0x4AAAAAACJJ-EXmOljL2_UU';
-  const DRAFT_KEY = 'metro_add_draft_v3';
+  const DRAFT_KEY = 'metro_add_draft_v4';
 
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
@@ -455,6 +526,7 @@
   const successScreen = document.getElementById('successScreen');
   const msgBox = document.getElementById('msgBox');
   const guildList = document.getElementById('guildList');
+  const refreshGuilds = document.getElementById('refreshGuilds');
   const progressSteps = document.querySelectorAll('.progress-step');
   const steps = document.querySelectorAll('.step');
   const prevBtn = document.getElementById('prevBtn');
@@ -471,6 +543,8 @@
   let turnstileWidgetId = null;
   let turnstileToken = null;
   let currentStep = 1;
+  let rateLimitTimer = null;
+  let guildMembersMap = {};
 
   const FORBIDDEN_TAGS = ['хуй', 'пизда', 'бля', 'еба', 'сука', 'нахуй', 'порно', 'секс', 'нарко'];
   const ADMIN_BITS = 0x8n | 0x20n;
@@ -574,7 +648,7 @@
     formWrap.style.display = 'block';
 
     if (!discordToken) {
-      guildList.innerHTML = `<div class="guild-error">Discord-токен истёк. <a href="${AUTH_URL}">Войди заново</a>.</div>`;
+      showTokenExpired();
       return;
     }
 
@@ -582,6 +656,28 @@
     if (draft) draftNotice.classList.add('show');
 
     await loadGuilds();
+  }
+
+  function showTokenExpired() {
+    guildList.innerHTML = `
+      <div class="guild-error" style="padding:24px; text-align:left;">
+        <div style="font-size:16px; font-weight:700; margin-bottom:10px; color:var(--danger);">⏱ Сессия Discord истекла</div>
+        <p style="font-size:13.5px; line-height:1.6; margin-bottom:14px; color:var(--text);">
+          Discord-токен живёт <strong>1 час</strong> — это требование безопасности Discord. Мы не храним его дольше, чтобы защитить ваш аккаунт.
+        </p>
+        <p style="font-size:13.5px; line-height:1.6; margin-bottom:18px; color:var(--text);">
+          <strong>Что это значит:</strong><br>
+          • «Мои серверы» и каталог работают как обычно — токен там не нужен.<br>
+          • Добавление нового сервера требует свежий токен, чтобы проверить, что вы реально админ.
+        </p>
+        <a href="${AUTH_URL}" style="display:inline-block; padding:12px 24px; border-radius:10px; background:var(--accent); color:var(--accent-text); font-size:14px; font-weight:600; text-decoration:none;">
+          Войти заново через Discord →
+        </a>
+        <div style="font-size:12px; color:var(--dim); margin-top:12px; line-height:1.5;">
+          После входа вернитесь на эту страницу — данные формы сохранятся.
+        </div>
+      </div>
+    `;
   }
 
   document.getElementById('restoreDraft').addEventListener('click', () => {
@@ -593,21 +689,47 @@
     clearDraft(); draftNotice.classList.remove('show');
   });
 
-  // Гильдии
+  // Загрузка гильдий с обработкой 429
   async function loadGuilds() {
-    guildList.innerHTML = '<div class="guild-loading">Загрузка серверов из Discord...</div>';
+    guildList.innerHTML = '<div class="guild-loading"><span class="loading-indicator"></span>Загрузка серверов из Discord...</div>';
+    refreshGuilds.style.display = 'none';
+
     try {
       const res = await fetch('https://discord.com/api/v10/users/@me/guilds', {
         headers: { Authorization: `Bearer ${discordToken}` }
       });
-      if (res.status === 401) throw new Error('TOKEN_EXPIRED');
-      if (!res.ok) throw new Error('Ошибка Discord (' + res.status + ')');
-      const guilds = await res.json();
-      const adminGuilds = guilds.filter(g => g.owner === true || hasAdminPermissions(g.permissions));
-      if (!adminGuilds.length) {
-        guildList.innerHTML = '<div class="guild-error">У тебя нет серверов, где ты администратор.</div>';
+
+      if (res.status === 401) {
+        showTokenExpired();
         return;
       }
+
+      if (res.status === 429) {
+        const retryAfter = parseInt(res.headers.get('Retry-After') || '60');
+        showRateLimit(retryAfter);
+        return;
+      }
+
+      if (!res.ok) throw new Error('Ошибка Discord (' + res.status + ')');
+
+      const guilds = await res.json();
+      const adminGuilds = guilds.filter(g => g.owner === true || hasAdminPermissions(g.permissions));
+
+      if (!adminGuilds.length) {
+        guildList.innerHTML = `
+          <div class="guild-empty">
+            <div class="icon">😕</div>
+            <h3>У вас нет серверов с правами администратора</h3>
+            <p>Чтобы добавить сервер, вам нужны права <strong>Администратора</strong> или <strong>Владельца</strong> на этом сервере.<br>Попросите владельца выдать права или используйте другой аккаунт.</p>
+            <button type="button" class="refresh-btn" onclick="location.reload()" style="margin-top:0">🔄 Обновить список</button>
+          </div>
+        `;
+        return;
+      }
+
+      // Получаем уже добавленные инвайты
+      const { data: existingServers } = await supabase.from('servers').select('invite_link');
+      const existingInvites = new Set((existingServers || []).map(s => s.invite_link).filter(Boolean));
 
       guildList.innerHTML = '';
       adminGuilds.forEach(g => {
@@ -615,31 +737,61 @@
         item.className = 'guild-item';
         item.dataset.id = g.id;
 
-        // Иконка: если есть — пробуем загрузить, при ошибке — первая буква
+        // Иконка с fallback при 404
         const letter = escapeHtml(g.name[0].toUpperCase());
         const iconHtml = (g.icon && g.icon !== 'null')
           ? `<img src="https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png?size=128" alt="" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.remove(); this.parentElement.textContent='${letter}'">`
           : letter;
 
         const badge = g.owner ? 'Владелец' : 'Админ';
+        const approxMembers = g.approximate_member_count || 0;
+        const membersText = approxMembers > 0 ? ` · 👥 ${approxMembers.toLocaleString('ru-RU')}` : '';
+
         item.innerHTML = `
           <div class="guild-icon">${iconHtml}</div>
           <div class="guild-info">
             <div class="guild-name">${escapeHtml(g.name)}</div>
-            <div class="guild-meta">ID: ${g.id}</div>
+            <div class="guild-meta">ID: ${g.id}${membersText}</div>
           </div>
           <span class="guild-badge">${badge}</span>
         `;
         item.addEventListener('click', () => selectGuild(item, g));
         guildList.appendChild(item);
       });
+
+      refreshGuilds.style.display = 'flex';
+
     } catch (err) {
-      if (err.message === 'TOKEN_EXPIRED') {
-        guildList.innerHTML = `<div class="guild-error">Токен истёк. <a href="${AUTH_URL}">Войди заново</a>.</div>`;
-      } else {
-        guildList.innerHTML = `<div class="guild-error">${escapeHtml(err.message)}</div>`;
-      }
+      guildList.innerHTML = `<div class="guild-error">${escapeHtml(err.message)}</div>`;
+      refreshGuilds.style.display = 'flex';
     }
+  }
+
+  // Обработка 429 — таймер
+  function showRateLimit(seconds) {
+    if (rateLimitTimer) clearInterval(rateLimitTimer);
+
+    guildList.innerHTML = `
+      <div class="rate-limit-box">
+        <div class="title">⏱ Слишком много запросов к Discord</div>
+        <div class="desc">Discord временно ограничил запросы. Это нормально — защита от спама. Подождите, и мы попробуем снова.</div>
+        <div class="timer" id="rateLimitTimer">${seconds}</div>
+        <div class="desc">секунд до повторной попытки</div>
+      </div>
+    `;
+
+    let remaining = seconds;
+    const timerEl = document.getElementById('rateLimitTimer');
+
+    rateLimitTimer = setInterval(() => {
+      remaining--;
+      if (timerEl) timerEl.textContent = remaining;
+      if (remaining <= 0) {
+        clearInterval(rateLimitTimer);
+        rateLimitTimer = null;
+        loadGuilds();
+      }
+    }, 1000);
   }
 
   function selectGuild(el, guild) {
@@ -648,14 +800,24 @@
     selectedGuild = guild;
     document.getElementById('f-name').value = guild.name;
 
-    // Иконка сервера — с fallback
     if (guild.icon && guild.icon !== 'null') {
       uploadedAvatarUrl = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=256`;
       document.getElementById('photoPreview').innerHTML = `<img src="${uploadedAvatarUrl}" alt="" referrerpolicy="no-referrer" onerror="this.parentElement.textContent='${escapeHtml(guild.name[0].toUpperCase())}'">`;
       document.getElementById('photoRemove').style.display = 'inline-block';
     }
+
+    // Автозаполнение участников
+    if (guild.approximate_member_count) {
+      document.getElementById('f-members').value = guild.approximate_member_count;
+    }
+
     setProgress(2);
   }
+
+  refreshGuilds.addEventListener('click', () => {
+    if (rateLimitTimer) { clearInterval(rateLimitTimer); rateLimitTimer = null; }
+    loadGuilds();
+  });
 
   // Навигация
   nextBtn.addEventListener('click', () => {
@@ -746,6 +908,7 @@
     if (!match) return 'Неверный формат ссылки';
     try {
       const res = await fetch(`https://discord.com/api/v10/invites/${match[1]}?with_counts=true`);
+      if (res.status === 429) return 'Слишком много запросов к Discord. Подождите минуту.';
       if (!res.ok) return 'Ссылка недействительна или истекла';
       const data = await res.json();
       if (!data.guild) return 'Ссылка ведёт не на сервер (возможно, на бота или группу)';
@@ -763,7 +926,7 @@
       const guilds = await res.json();
       const guild = guilds.find(g => g.id === guildId);
       if (!guild) return 'Вы больше не состоите в этом сервере';
-      if (guild.owner !== true && !hasAdminPermissions(guild.permissions)) return 'У вас больше нет прав администратора на этом сервере';
+      if (guild.owner !== true && !hasAdminPermissions(guild.permissions)) return 'У вас больше нет прав администратора';
       return null;
     } catch { return 'Ошибка проверки прав'; }
   }
@@ -773,6 +936,10 @@
     const input = document.getElementById('f-' + id);
     if (el) { el.textContent = msg || ''; el.classList.toggle('show', !!msg); }
     if (input) input.classList.toggle('error', !!msg);
+  }
+  function showFieldWarning(id, msg) {
+    const el = document.getElementById('warn-' + id);
+    if (el) { el.textContent = msg || ''; el.classList.toggle('show', !!msg); }
   }
 
   // Фото
@@ -938,10 +1105,12 @@
 
     const invite = document.getElementById('f-invite').value.trim();
     const members = parseInt(document.getElementById('f-members').value) || 0;
+    const name = document.getElementById('f-name').value.trim();
 
     submitBtn.classList.add('loading');
     submitBtn.disabled = true;
 
+    // 1. Проверка, что всё ещё админ
     const adminErr = await checkStillAdmin(selectedGuild.id);
     if (adminErr) {
       showMsg(adminErr, 'error');
@@ -949,6 +1118,7 @@
       return;
     }
 
+    // 2. Проверка инвайта
     const inviteErr = await validateInviteLive(invite, selectedGuild.id);
     if (inviteErr) {
       showFieldError('invite', inviteErr);
@@ -958,14 +1128,35 @@
     }
     showFieldError('invite', '');
 
-    const { data: existing } = await supabase
+    // 3. Проверка дубликата инвайта
+    const { data: existingInvite } = await supabase
       .from('servers').select('id').eq('invite_link', invite).maybeSingle();
-    if (existing) {
+    if (existingInvite) {
       showMsg('Сервер с такой ссылкой уже есть в каталоге', 'error');
       submitBtn.classList.remove('loading'); submitBtn.disabled = false;
       return;
     }
 
+    // 4. Проверка дубликата названия
+    const { data: existingName } = await supabase
+      .from('servers').select('id').ilike('name', name).maybeSingle();
+    if (existingName) {
+      showMsg('Сервер с таким названием уже есть в каталоге. Измените название.', 'error');
+      showFieldError('name', 'Такое название уже занято');
+      submitBtn.classList.remove('loading'); submitBtn.disabled = false;
+      return;
+    }
+
+    // 5. Проверка количества участников
+    if (selectedGuild.approximate_member_count) {
+      const real = selectedGuild.approximate_member_count;
+      const diff = Math.abs(real - members);
+      if (diff > Math.max(real * 0.5, 100)) {
+        showFieldWarning('members', `Реально в Discord: ~${real.toLocaleString('ru-RU')} участников. Убедитесь, что ввели верное число.`);
+      }
+    }
+
+    // 6. Капча
     try {
       const { data: verify, error: verifyErr } = await supabase.functions.invoke('verify-turnstile', {
         body: { token: turnstileToken }
@@ -982,7 +1173,7 @@
     const validContacts = contacts.filter(c => c.value.trim());
 
     const serverData = {
-      name: document.getElementById('f-name').value.trim(),
+      name,
       description: document.getElementById('f-desc').value.trim(),
       category: document.getElementById('f-category').value,
       language: document.getElementById('f-language').value,
@@ -1054,6 +1245,7 @@
       authRequired.classList.remove('show');
       formWrap.style.display = 'block';
       if (discordToken) loadGuilds();
+      else showTokenExpired();
     }
   });
 </script>
