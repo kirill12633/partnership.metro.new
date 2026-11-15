@@ -3,531 +3,181 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Metro New Partnership — Каталог Discord-сообществ</title>
-<link rel="icon" type="image/png" href="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>Metro New Partnership — Каталог Discord-сообществ для взаимного пиара</title>
+<meta name="description" content="Каталог Discord-сообществ для взаимного продвижения. Найди партнёров, знакомься с владельцами и развивай своё сообщество. Бесплатно, с проверкой прав через Discord.">
+<meta name="keywords" content="Discord, каталог серверов, взаимный пиар, партнёрство, Discord серверы, продвижение, Metro New">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://kirill12633.github.io/partnership.metro.new/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Metro New Partnership">
 <meta property="og:title" content="Metro New Partnership — Каталог Discord-сообществ">
 <meta property="og:description" content="Найди партнёров и расти вместе. Каталог Discord-серверов для взаимного продвижения.">
 <meta property="og:image" content="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
-<meta property="og:type" content="website">
+<meta property="og:url" content="https://kirill12633.github.io/partnership.metro.new/">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Metro New Partnership — Каталог Discord-сообществ">
+<meta name="twitter:description" content="Найди партнёров и расти вместе.">
+<meta name="twitter:image" content="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
+<link rel="icon" type="image/png" href="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#f7f7f8">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Metro New Partnership",
+  "url": "https://kirill12633.github.io/partnership.metro.new/",
+  "description": "Каталог Discord-сообществ для взаимного продвижения"
+}
+</script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root, [data-theme="light"] {
-    --bg: #f7f7f8;
-    --bg-2: #f0f0f2;
-    --card: #ffffff;
-    --card-hover: #fcfcfc;
-    --border: #e4e4e7;
-    --border-hover: #d4d4d8;
-    --text: #0a0a0a;
-    --dim: #6b6b70;
-    --dim-2: #9a9aa0;
-    --accent: #111111;
-    --accent-text: #ffffff;
-    --accent-soft: #ebebee;
-    --success: #16a34a;
-    --warning: #d97706;
-    --danger: #dc2626;
+    --bg: #f7f7f8; --bg-2: #f0f0f2; --card: #ffffff;
+    --border: #e4e4e7; --border-hover: #d4d4d8;
+    --text: #0a0a0a; --dim: #6b6b70; --dim-2: #9a9aa0;
+    --accent: #111111; --accent-text: #ffffff; --accent-soft: #ebebee;
+    --success: #16a34a; --warning: #d97706; --danger: #dc2626;
     --shadow: 0 1px 3px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
     --shadow-lg: 0 4px 12px rgba(0,0,0,.06), 0 16px 48px rgba(0,0,0,.06);
     --font: 'Inter', system-ui, sans-serif;
   }
-
   [data-theme="dark"] {
-    --bg: #0a0a0a;
-    --bg-2: #111111;
-    --card: #141414;
-    --card-hover: #1a1a1a;
-    --border: #232323;
-    --border-hover: #333333;
-    --text: #f4f4f4;
-    --dim: #9a9a9a;
-    --dim-2: #6b6b6b;
-    --accent: #f4f4f4;
-    --accent-text: #0a0a0a;
-    --accent-soft: #1a1a1a;
-    --success: #22c55e;
-    --warning: #f59e0b;
-    --danger: #ef4444;
+    --bg: #0a0a0a; --bg-2: #111111; --card: #141414;
+    --border: #232323; --border-hover: #333333;
+    --text: #f4f4f4; --dim: #9a9a9a; --dim-2: #6b6b6b;
+    --accent: #f4f4f4; --accent-text: #0a0a0a; --accent-soft: #1a1a1a;
+    --success: #22c55e; --warning: #f59e0b; --danger: #ef4444;
     --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.4);
     --shadow-lg: 0 4px 12px rgba(0,0,0,.4), 0 16px 48px rgba(0,0,0,.6);
   }
-
   html { scroll-behavior: smooth; }
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-    transition: background .3s, color .3s;
-  }
-
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; transition: background .3s, color .3s, opacity .25s; }
+  body.page-transition { opacity: 0; }
   ::-webkit-scrollbar { width: 8px; height: 8px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 4px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--dim-2); }
-
   .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-  /* ===== NAV ===== */
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: var(--bg);
-    border-bottom: 1px solid transparent;
-    transition: border-color .3s, background .3s;
-  }
-  nav.scrolled { border-bottom-color: var(--border); background: var(--bg); }
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 15px;
-    font-weight: 700;
-    letter-spacing: -.3px;
-  }
-  .logo-mark {
-    width: 28px; height: 28px; border-radius: 7px;
-    overflow: hidden; flex-shrink: 0;
-  }
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid transparent; transition: border-color .3s, background .3s; }
+  nav.scrolled { border-bottom-color: var(--border); }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; letter-spacing: -.3px; }
+  .logo-mark { width: 28px; height: 28px; border-radius: 7px; overflow: hidden; flex-shrink: 0; }
   .logo-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .beta-badge { font-size: 10px; padding: 3px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--dim); border: 1px solid var(--border); font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
   .nav-links { display: flex; gap: 28px; align-items: center; }
-  .nav-links a {
-    font-size: 14px; font-weight: 500; color: var(--dim);
-    text-decoration: none; transition: color .2s;
-  }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--dim); text-decoration: none; transition: color .2s; }
   .nav-links a:hover { color: var(--text); }
   .nav-actions { display: flex; gap: 10px; align-items: center; }
-
-  .theme-btn {
-    width: 36px; height: 36px; border-radius: 9px;
-    border: 1px solid var(--border); background: var(--card);
-    color: var(--text); cursor: pointer;
-    display: grid; place-items: center;
-    font-size: 15px; transition: all .2s;
-  }
+  .theme-btn { width: 36px; height: 36px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; display: grid; place-items: center; font-size: 15px; transition: all .2s; }
   .theme-btn:hover { border-color: var(--border-hover); background: var(--accent-soft); }
-
-  .nav-btn {
-    padding: 9px 18px; border-radius: 9px; border: none;
-    background: var(--accent); color: var(--accent-text);
-    font-size: 13px; font-weight: 600;
-    cursor: pointer; font-family: inherit; transition: all .2s;
-  }
+  .nav-btn { padding: 9px 18px; border-radius: 9px; border: none; background: var(--accent); color: var(--accent-text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; }
   .nav-btn:hover { opacity: .85; transform: translateY(-1px); }
   @media (max-width: 720px) { .nav-links { display: none; } }
 
-  /* ===== HERO ===== */
-  .hero {
-    text-align: center;
-    padding: 100px 0 80px;
-  }
-  .hero h1 {
-    font-size: clamp(40px, 7vw, 72px);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -2.5px;
-    margin-bottom: 24px;
-  }
+  .hero { text-align: center; padding: 100px 0 80px; }
+  .hero h1 { font-size: clamp(40px, 7vw, 72px); font-weight: 800; line-height: 1.05; letter-spacing: -2.5px; margin-bottom: 24px; }
   .hero h1 .dim { color: var(--dim-2); }
-  .hero p.lead {
-    font-size: clamp(15px, 1.6vw, 18px);
-    color: var(--dim);
-    max-width: 560px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
-  }
+  .hero p.lead { font-size: clamp(15px, 1.6vw, 18px); color: var(--dim); max-width: 560px; margin: 0 auto 40px; line-height: 1.6; }
   .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-  .btn-primary {
-    padding: 14px 28px; border-radius: 10px; border: none;
-    background: var(--accent); color: var(--accent-text);
-    font-size: 14px; font-weight: 600;
-    cursor: pointer; font-family: inherit; transition: all .2s;
-    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
-  }
+  .btn-primary { padding: 14px 28px; border-radius: 10px; border: none; background: var(--accent); color: var(--accent-text); font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
   .btn-primary:hover { opacity: .85; transform: translateY(-1px); }
-  .btn-secondary {
-    padding: 14px 28px; border-radius: 10px;
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--text); font-size: 14px; font-weight: 600;
-    cursor: pointer; font-family: inherit; transition: all .2s;
-    text-decoration: none;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
+  .btn-secondary { padding: 14px 28px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
   .btn-secondary:hover { border-color: var(--border-hover); background: var(--accent-soft); transform: translateY(-1px); }
+  .beta-note { font-size: 12px; color: var(--dim-2); margin-top: 16px; }
 
-  /* ===== СЕКЦИИ ===== */
   .section { padding: 80px 0; }
   .section-head { text-align: center; margin-bottom: 48px; }
-  .kicker {
-    font-size: 12px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 1.5px; color: var(--dim-2); margin-bottom: 12px;
-  }
-  .section-title {
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    margin-bottom: 12px;
-  }
-  .section-sub {
-    font-size: 15px; color: var(--dim);
-    max-width: 480px; margin: 0 auto; line-height: 1.6;
-  }
+  .kicker { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dim-2); margin-bottom: 12px; }
+  .section-title { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 12px; }
+  .section-sub { font-size: 15px; color: var(--dim); max-width: 480px; margin: 0 auto; line-height: 1.6; }
 
-  /* ===== НАМ ДОВЕРЯЮТ ===== */
-  .trust-section { padding: 40px 0 80px; }
-  .trust-label {
-    text-align: center;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--dim-2);
-    margin-bottom: 24px;
-  }
-  .trust-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-  }
-  .trust-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 18px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--dim);
-    transition: all .2s;
-    text-decoration: none;
-    min-width: 140px;
-  }
-  .trust-item:hover {
-    border-color: var(--border-hover);
-    color: var(--text);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
-  }
-  .trust-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 7px;
-    overflow: hidden;
-    background: var(--accent-soft);
-    display: grid;
-    place-items: center;
-    color: var(--text);
-    font-weight: 700;
-    font-size: 12px;
-    flex-shrink: 0;
-  }
+  .trust-section { padding: 40px 0 80px; display: none; }
+  .trust-section.show { display: block; }
+  .trust-label { text-align: center; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dim-2); margin-bottom: 24px; }
+  .trust-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+  .trust-item { display: flex; align-items: center; gap: 10px; padding: 12px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; font-size: 13px; font-weight: 600; color: var(--dim); transition: all .2s; text-decoration: none; min-width: 140px; }
+  .trust-item:hover { border-color: var(--border-hover); color: var(--text); transform: translateY(-2px); box-shadow: var(--shadow); }
+  .trust-avatar { width: 28px; height: 28px; border-radius: 7px; overflow: hidden; background: var(--accent-soft); display: grid; place-items: center; color: var(--text); font-weight: 700; font-size: 12px; flex-shrink: 0; }
   .trust-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .trust-empty {
-    text-align: center;
-    padding: 32px;
-    color: var(--dim-2);
-    font-size: 13px;
-    background: var(--card);
-    border: 1px dashed var(--border);
-    border-radius: 12px;
-    max-width: 400px;
-    margin: 0 auto;
-  }
 
-  /* ===== ОТЗЫВЫ ===== */
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-  .review-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    transition: all .25s;
-  }
-  .review-card:hover {
-    border-color: var(--border-hover);
-    box-shadow: var(--shadow);
-    transform: translateY(-2px);
-  }
-  .review-quote {
-    font-size: 14.5px;
-    line-height: 1.65;
-    color: var(--text);
-    margin-bottom: 20px;
-    font-style: italic;
-  }
-  .review-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .review-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: var(--accent-soft);
-    display: grid;
-    place-items: center;
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--text);
-    flex-shrink: 0;
-  }
-  .review-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .review-info { min-width: 0; }
-  .review-name { font-size: 13.5px; font-weight: 700; }
-  .review-role { font-size: 12px; color: var(--dim); margin-top: 2px; }
-  .review-empty {
-    text-align: center;
-    padding: 48px 32px;
-    color: var(--dim-2);
-    font-size: 13px;
-    background: var(--card);
-    border: 1px dashed var(--border);
-    border-radius: 16px;
-    line-height: 1.6;
-  }
-  .review-empty .icon { font-size: 40px; margin-bottom: 12px; opacity: .4; }
-
-  /* ===== КАК ЭТО РАБОТАЕТ ===== */
-  .steps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-  }
-  .step {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px 28px;
-    transition: all .25s;
-  }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .step { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px 28px; transition: all .25s; }
   .step:hover { border-color: var(--border-hover); box-shadow: var(--shadow); transform: translateY(-2px); }
-  .step-num {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: var(--accent-soft); color: var(--text);
-    display: grid; place-items: center;
-    font-size: 15px; font-weight: 700;
-    margin-bottom: 20px;
-  }
-  .step h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; letter-spacing: -.2px; }
+  .step-num { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-soft); color: var(--text); display: grid; place-items: center; font-size: 15px; font-weight: 700; margin-bottom: 20px; }
+  .step h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
   .step p { font-size: 14px; color: var(--dim); line-height: 1.6; }
 
-  /* ===== ПРЕИМУЩЕСТВА ===== */
-  .features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 16px;
-  }
-  .feature {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    transition: all .25s;
-  }
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .feature { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 28px; transition: all .25s; }
   .feature:hover { border-color: var(--border-hover); box-shadow: var(--shadow); transform: translateY(-2px); }
-  .feature .ico {
-    width: 40px; height: 40px; border-radius: 10px;
-    background: var(--accent-soft);
-    display: grid; place-items: center;
-    font-size: 18px; margin-bottom: 16px;
-  }
+  .feature .ico { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-soft); display: grid; place-items: center; font-size: 18px; margin-bottom: 16px; }
   .feature h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
   .feature p { font-size: 13.5px; color: var(--dim); line-height: 1.6; }
 
-  /* ===== ПОЧЕМУ БЕСПЛАТНО ===== */
-  .free-card {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 48px 40px;
-    text-align: center;
-  }
+  .free-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 20px; padding: 48px 40px; text-align: center; }
   .free-card h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 800; letter-spacing: -1px; margin-bottom: 12px; }
   .free-card > p { font-size: 15px; color: var(--dim); max-width: 560px; margin: 0 auto 32px; line-height: 1.65; }
-  .free-points {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 12px;
-    text-align: left;
-  }
-  .free-point {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-  }
+  .free-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; text-align: left; }
+  .free-point { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
   .free-point .check { color: var(--success); font-size: 16px; margin-bottom: 8px; font-weight: 700; }
   .free-point h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
   .free-point p { font-size: 13px; color: var(--dim); margin: 0; line-height: 1.5; }
 
-  /* ===== ВИТРИНЫ ===== */
-  .showcase-row {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(240px, 1fr);
-    gap: 12px;
-    overflow-x: auto;
-    padding: 4px 4px 12px;
-    scrollbar-width: thin;
-  }
-  .showcase-row::-webkit-scrollbar { height: 6px; }
-  .showcase-row::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
-  .mini-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
-    display: flex; align-items: center; gap: 12px;
-    cursor: pointer; transition: all .2s;
-    min-width: 240px;
-    text-decoration: none; color: var(--text);
-  }
-  .mini-card:hover { border-color: var(--border-hover); background: var(--card-hover); }
-  .mini-avatar {
-    width: 40px; height: 40px; border-radius: 10px;
-    overflow: hidden; background: var(--accent-soft);
-    display: grid; place-items: center;
-    color: var(--text); font-weight: 700; font-size: 15px; flex-shrink: 0;
-  }
-  .mini-avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .mini-info { flex: 1; min-width: 0; }
-  .mini-name { font-size: 14px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .mini-meta { font-size: 12px; color: var(--dim); margin-top: 2px; }
-
-  /* ===== КАТАЛОГ ===== */
-  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
-  .search {
-    flex: 1 1 240px; padding: 12px 16px; border-radius: 10px;
-    border: 1px solid var(--border); background: var(--card);
-    color: var(--text); font-size: 14px; outline: none;
-    font-family: inherit; transition: all .2s;
-  }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .search { flex: 1 1 240px; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 14px; outline: none; font-family: inherit; transition: all .2s; }
   .search:focus { border-color: var(--border-hover); }
   .search::placeholder { color: var(--dim-2); }
-  select {
-    padding: 12px 14px; border-radius: 10px;
-    border: 1px solid var(--border); background: var(--card);
-    color: var(--text); font-size: 14px; outline: none;
-    font-family: inherit; cursor: pointer; transition: all .2s;
-  }
+  select { padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 14px; outline: none; font-family: inherit; cursor: pointer; transition: all .2s; }
   select:focus { border-color: var(--border-hover); }
 
+  .active-tag { display: none; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: var(--accent-soft); border: 1px solid var(--border); font-size: 13px; font-weight: 600; margin-bottom: 16px; width: fit-content; }
+  .active-tag.show { display: inline-flex; }
+  .active-tag button { border: none; background: none; color: var(--dim); cursor: pointer; font-size: 16px; line-height: 1; padding: 0; }
+
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
-  .card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 14px; padding: 22px;
-    display: flex; flex-direction: column;
-    transition: all .25s;
-    position: relative;
-    text-decoration: none; color: var(--text);
-  }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; transition: all .25s; position: relative; text-decoration: none; color: var(--text); }
   .card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+  .card.fade-out { opacity: 0; transform: scale(.95); pointer-events: none; }
   .card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-  .avatar {
-    width: 44px; height: 44px; border-radius: 11px;
-    overflow: hidden; background: var(--accent-soft);
-    display: grid; place-items: center;
-    color: var(--text); font-weight: 700; font-size: 17px; flex-shrink: 0;
-  }
+  .avatar { width: 48px; height: 48px; border-radius: 12px; overflow: hidden; background: var(--accent-soft); display: grid; place-items: center; color: var(--text); font-weight: 700; font-size: 18px; flex-shrink: 0; }
   .avatar img { width: 100%; height: 100%; object-fit: cover; }
-  .card h3 { font-size: 15px; font-weight: 700; letter-spacing: -.2px; }
-  .meta { font-size: 12px; color: var(--dim); margin-top: 2px; }
+  .card h3 { font-size: 15px; font-weight: 700; }
+  .meta { font-size: 12px; color: var(--dim); margin-top: 3px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .meta .lang-badge { font-size: 10px; padding: 2px 7px; border-radius: 4px; background: var(--accent-soft); color: var(--dim); font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
   .card p { font-size: 13.5px; line-height: 1.55; color: var(--dim); margin-bottom: 16px; flex: 1; }
   .card-bottom { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
   .tags { display: flex; gap: 5px; flex-wrap: wrap; }
-  .tag {
-    font-size: 11px; padding: 4px 10px; border-radius: 999px;
-    background: var(--accent-soft); color: var(--dim);
-    font-weight: 500;
-  }
-  .join {
-    font-size: 12px; padding: 7px 14px; border-radius: 8px;
-    border: none; background: var(--accent);
-    color: var(--accent-text); font-weight: 600;
-    transition: all .2s;
-  }
-  .join:hover { opacity: .85; }
-
-  .share-btn {
-    position: absolute; top: 16px; right: 16px;
-    width: 28px; height: 28px; border-radius: 7px;
-    border: 1px solid var(--border); background: var(--card);
-    color: var(--dim); cursor: pointer;
-    display: grid; place-items: center; font-size: 13px;
-    transition: all .2s; opacity: 0;
-  }
-  .card:hover .share-btn { opacity: 1; }
-  .share-btn:hover { border-color: var(--border-hover); color: var(--text); }
+  .tag { font-size: 11px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--dim); font-weight: 500; text-decoration: none; transition: all .2s; cursor: pointer; }
+  .tag:hover { background: var(--border-hover); color: var(--text); }
+  .members-count { font-size: 12px; font-weight: 700; color: var(--text); display: inline-flex; align-items: center; gap: 4px; }
 
   .skeleton { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; }
-  .sk-line {
-    height: 10px; border-radius: 5px;
-    background: var(--accent-soft);
-    animation: shimmer 1.4s infinite;
-    margin-bottom: 8px;
-  }
+  .sk-line { height: 10px; border-radius: 5px; background: var(--accent-soft); animation: shimmer 1.4s infinite; margin-bottom: 8px; }
   @keyframes shimmer { 0%{opacity:.5} 50%{opacity:1} 100%{opacity:.5} }
-  .sk-avatar { width: 44px; height: 44px; border-radius: 11px; }
+  .sk-avatar { width: 48px; height: 48px; border-radius: 12px; }
 
   .empty { grid-column: 1 / -1; text-align: center; padding: 60px 24px; color: var(--dim); font-size: 14px; }
-  .load-more-wrap { text-align: center; margin-top: 32px; }
-  .load-more {
-    padding: 12px 28px; border-radius: 10px;
-    border: 1px solid var(--border); background: var(--card);
-    color: var(--text); font-size: 14px; font-weight: 600;
-    cursor: pointer; font-family: inherit; transition: all .2s;
-  }
-  .load-more:hover { border-color: var(--border-hover); background: var(--accent-soft); }
 
-  /* ===== FAQ ===== */
+  .infinite-loader { text-align: center; padding: 32px; display: none; }
+  .infinite-loader .spinner { display: inline-block; width: 24px; height: 24px; border: 2px solid var(--border); border-top-color: var(--text); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   .faq-list { max-width: 720px; margin: 0 auto; }
   .faq-item { border-bottom: 1px solid var(--border); }
-  .faq-q {
-    padding: 20px 4px; font-size: 15px; font-weight: 600;
-    cursor: pointer; display: flex; justify-content: space-between;
-    align-items: center; gap: 16px; user-select: none;
-  }
+  .faq-q { padding: 20px 4px; font-size: 15px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; user-select: none; }
   .faq-q .arrow { color: var(--dim-2); font-size: 14px; transition: transform .3s; flex-shrink: 0; }
   .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
-  .faq-a {
-    max-height: 0; overflow: hidden;
-    transition: max-height .3s ease, padding .3s ease;
-    padding: 0 4px; font-size: 14px; color: var(--dim); line-height: 1.65;
-  }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease; padding: 0 4px; font-size: 14px; color: var(--dim); line-height: 1.65; }
   .faq-item.open .faq-a { max-height: 300px; padding: 0 4px 20px; }
   .faq-a a { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
 
-  /* ===== CTA ===== */
-  .cta {
-    text-align: center; padding: 64px 40px;
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: 20px; margin: 80px 0;
-  }
+  .cta { text-align: center; padding: 64px 40px; background: var(--bg-2); border: 1px solid var(--border); border-radius: 20px; margin: 80px 0; }
   .cta h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
   .cta p { font-size: 15px; color: var(--dim); margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.6; }
 
-  /* ===== FOOTER ===== */
   footer { border-top: 1px solid var(--border); padding: 48px 0 32px; background: var(--bg-2); }
   .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 40px; }
   @media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; } }
@@ -538,29 +188,14 @@
   .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .footer-col a { font-size: 13.5px; color: var(--dim); text-decoration: none; transition: color .2s; }
   .footer-col a:hover { color: var(--text); }
-
   .social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .social-btn {
-    display: flex; align-items: center; gap: 8px;
-    padding: 9px 10px; border-radius: 8px;
-    border: 1px solid var(--border); background: var(--card);
-    color: var(--dim); font-size: 12.5px; font-weight: 500;
-    text-decoration: none; transition: all .2s;
-  }
+  .social-btn { display: flex; align-items: center; gap: 8px; padding: 9px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--dim); font-size: 12.5px; font-weight: 500; text-decoration: none; transition: all .2s; }
   .social-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
   .social-btn:hover { border-color: var(--border-hover); color: var(--text); background: var(--accent-soft); }
-
   .footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--dim-2); }
+  .footer-beta { font-size: 11px; color: var(--dim-2); margin-top: 8px; }
 
-  .toast {
-    position: fixed; bottom: 24px; left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--text); color: var(--bg);
-    padding: 10px 20px; border-radius: 8px;
-    font-size: 13px; font-weight: 600;
-    box-shadow: var(--shadow-lg);
-    transition: transform .3s; z-index: 999;
-  }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--text); color: var(--bg); padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; box-shadow: var(--shadow-lg); transition: transform .3s; z-index: 999; }
   .toast.show { transform: translateX(-50%) translateY(0); }
 </style>
 </head>
@@ -572,49 +207,36 @@
     <div class="logo">
       <div class="logo-mark"><img src="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png" alt="Metro New"></div>
       Метро New Partnership
+      <span class="beta-badge">Beta</span>
     </div>
     <div class="nav-links">
+      <a href="#how">Как работает</a>
       <a href="#catalog">Каталог</a>
-      <a href="https://kirill12633.github.io/partnership.metro.new/add/">Добавить сервер</a>
+      <a href="https://kirill12633.github.io/partnership.metro.new/feed/">Лента</a>
+      <a href="https://kirill12633.github.io/partnership.metro.new/about/">О нас</a>
     </div>
     <div class="nav-actions">
-      <button class="theme-btn" id="themeBtn" title="Переключить тему">🌙</button>
+      <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
       <button class="nav-btn" onclick="goAuth()">Войти через Discord</button>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <h1>Найди своих.<br><span class="dim">Расти вместе.</span></h1>
     <p class="lead">Каталог Discord-сообществ для взаимного продвижения. Находи подходящие серверы, знакомься с владельцами и развивай своё сообщество.</p>
     <div class="hero-btns">
       <a class="btn-primary" href="#catalog">Открыть каталог →</a>
-      <a class="btn-secondary" onclick="goAuth()">Добавить сервер</a>
+      <button class="btn-secondary" id="randomBtn">🎲 Мне повезёт</button>
+      <a class="btn-secondary" href="https://kirill12633.github.io/partnership.metro.new/feed/">📱 Лента</a>
     </div>
+    <p class="beta-note">Платформа работает в бета-режиме. Возможны баги и изменения.</p>
   </section>
 
-  <!-- НАМ ДОВЕРЯЮТ -->
-  <section class="trust-section" id="trustSection" style="display:none">
+  <section class="trust-section" id="trustSection">
     <div class="trust-label">Нам доверяют</div>
     <div class="trust-row" id="trustRow"></div>
   </section>
 
-  <!-- ОТЗЫВЫ -->
-  <section class="section" id="reviewsSection">
-    <div class="section-head">
-      <div class="kicker">Отзывы</div>
-      <h2 class="section-title">Что говорят владельцы</h2>
-      <p class="section-sub">Реальные отзывы участников платформы</p>
-    </div>
-    <div class="reviews-grid" id="reviewsGrid">
-      <div class="review-empty">
-        <div class="icon">💬</div>
-        Пока нет отзывов. Станьте первым, кто поделится опытом — напишите нам в <a href="https://discord.com/invite/WjGZBs3HMX" target="_blank" rel="noopener" style="color:var(--text);">Discord</a>.
-      </div>
-    </div>
-  </section>
-
-  <!-- КАК ЭТО РАБОТАЕТ -->
   <section class="section" id="how">
     <div class="section-head">
       <div class="kicker">Просто и быстро</div>
@@ -640,7 +262,6 @@
     </div>
   </section>
 
-  <!-- ПРЕИМУЩЕСТВА -->
   <section class="section" id="features">
     <div class="section-head">
       <div class="kicker">Возможности</div>
@@ -671,7 +292,6 @@
     </div>
   </section>
 
-  <!-- ПОЧЕМУ БЕСПЛАТНО -->
   <section class="section">
     <div class="free-card">
       <h2>Почему бесплатно?</h2>
@@ -696,27 +316,16 @@
     </div>
   </section>
 
-  <!-- ВИТРИНЫ -->
-  <section class="section" id="showcase">
-    <div class="section-head">
-      <div class="kicker">Свежее</div>
-      <h2 class="section-title">🔥 Новые за неделю</h2>
-    </div>
-    <div class="showcase-row" id="newRow"><div class="sk-line" style="width:100%;height:60px"></div></div>
-
-    <div class="section-head" style="margin-top:48px">
-      <div class="kicker">Популярное</div>
-      <h2 class="section-title">🏆 Топ по участникам</h2>
-    </div>
-    <div class="showcase-row" id="topRow"><div class="sk-line" style="width:100%;height:60px"></div></div>
-  </section>
-
-  <!-- КАТАЛОГ -->
   <section class="section" id="catalog">
     <div class="section-head">
       <div class="kicker">Discover Communities</div>
       <h2 class="section-title">Каталог серверов</h2>
       <p class="section-sub">Выбери сообщество и найди партнёров для взаимного роста</p>
+    </div>
+
+    <div class="active-tag" id="activeTag">
+      <span id="activeTagText"></span>
+      <button onclick="clearTagFilter()" title="Сбросить">×</button>
     </div>
 
     <div class="filters">
@@ -741,12 +350,11 @@
     </div>
 
     <div class="grid" id="grid"></div>
-    <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
-      <button class="load-more" id="loadMore">Показать ещё</button>
+    <div class="infinite-loader" id="infiniteLoader">
+      <div class="spinner"></div>
     </div>
   </section>
 
-  <!-- FAQ -->
   <section class="section">
     <div class="section-head">
       <div class="kicker">Вопросы</div>
@@ -771,17 +379,16 @@
         <div class="faq-a">Нет, полностью бесплатна. Никаких скрытых платежей, подписок или премиум-функций.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Как пожаловаться на сервер? <span class="arrow">▾</span></div>
-        <div class="faq-a">Напишите в <a href="https://discord.com/invite/WjGZBs3HMX" target="_blank" rel="noopener">Discord-сервер поддержки</a> с ссылкой на сервер и описанием нарушения. Или через форму на странице <a href="https://kirill12633.github.io/partnership.metro.new/contacts/">/contacts/</a>, выбрав тему «Жалоба на сервер».</div>
+        <div class="faq-q">Что такое «Лента»? <span class="arrow">▾</span></div>
+        <div class="faq-a">Это вертикальная лента серверов — как Shorts. Свайпайте вверх-вниз, чтобы смотреть серверы, и влево/вправо, чтобы пропускать или добавлять в избранное. Скоро появится.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Мой контент украли — что делать? <span class="arrow">▾</span></div>
-        <div class="faq-a">Подайте жалобу DMCA. Инструкция и шаблон — на странице <a href="https://kirill12633.github.io/partnership.metro.new/dmca/">Политика DMCA</a>. Мы рассмотрим жалобу в течение 7 рабочих дней.</div>
+        <div class="faq-q">Как пожаловаться на сервер? <span class="arrow">▾</span></div>
+        <div class="faq-a">Напишите в <a href="https://discord.com/invite/WjGZBs3HMX" target="_blank" rel="noopener">Discord-сервер поддержки</a> с ссылкой на сервер и описанием нарушения. Или на почту <a href="mailto:metro.new.help@gmail.com">metro.new.help@gmail.com</a>.</div>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta">
     <h2>Готовы найти партнёров?</h2>
     <p>Добавьте свой сервер в каталог и начните расти вместе с другими сообществами.</p>
@@ -802,13 +409,14 @@
           Metro New Partnership
         </div>
         <p class="footer-desc">Официальная платформа для поиска партнёров и взаимного продвижения Discord-сообществ проекта Metro New.</p>
+        <p class="footer-beta">Платформа работает в бета-режиме. Возможны баги и изменения.</p>
       </div>
       <div class="footer-col">
         <h5>Компания</h5>
         <ul>
           <li><a href="https://kirill12633.github.io/partnership.metro.new/about/">О нас</a></li>
           <li><a href="mailto:metro.new.help@gmail.com">Контакты</a></li>
-          <li><a href="https://kirill12633.github.io/partnership.metro.new/careers/">Вакансии</a></li>
+          <li><a href="https://kirill12633.github.io/careers.metro.new/" target="_blank" rel="noopener">Вакансии</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -848,14 +456,15 @@
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-  window.goAuth = () => { window.location.href = AUTH_URL; };
+  window.goAuth = () => {
+    document.body.classList.add('page-transition');
+    setTimeout(() => { window.location.href = AUTH_URL; }, 200);
+  };
 
-  // ===== Тема =====
   const themeBtn = document.getElementById('themeBtn');
   const savedTheme = localStorage.getItem('metro_theme') || 'light';
   document.documentElement.setAttribute('data-theme', savedTheme);
   themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
-
   themeBtn.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'dark' ? 'light' : 'dark';
@@ -865,12 +474,10 @@
     document.querySelector('meta[name="theme-color"]').setAttribute('content', next === 'dark' ? '#0a0a0a' : '#f7f7f8');
   });
 
-  // ===== Nav scroll =====
   window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
   });
 
-  // ===== FAQ =====
   document.querySelectorAll('.faq-q').forEach(q => {
     q.addEventListener('click', () => {
       const item = q.parentElement;
@@ -880,7 +487,6 @@
     });
   });
 
-  // ===== Тост =====
   function showToast(msg) {
     const el = document.getElementById('toast');
     el.textContent = msg;
@@ -888,24 +494,59 @@
     setTimeout(() => el.classList.remove('show'), 2200);
   }
 
-  // ===== Каталог =====
   const grid = document.getElementById('grid');
   const searchInput = document.getElementById('search');
   const filterCategory = document.getElementById('filterCategory');
   const filterLanguage = document.getElementById('filterLanguage');
   const sortBy = document.getElementById('sortBy');
-  const loadMoreBtn = document.getElementById('loadMore');
-  const loadMoreWrap = document.getElementById('loadMoreWrap');
-  const newRow = document.getElementById('newRow');
-  const topRow = document.getElementById('topRow');
+  const infiniteLoader = document.getElementById('infiniteLoader');
   const trustSection = document.getElementById('trustSection');
   const trustRow = document.getElementById('trustRow');
+  const activeTag = document.getElementById('activeTag');
+  const activeTagText = document.getElementById('activeTagText');
 
   let currentSearch = '', currentCategory = '', currentLanguage = '';
   let currentSort = 'members';
+  let currentTag = '';
   let page = 0;
   const PAGE_SIZE = 12;
   let allData = [];
+  let isLoadingMore = false;
+
+  const params = new URLSearchParams(location.search);
+  const tagParam = params.get('tag');
+  const qParam = params.get('q');
+  if (tagParam) {
+    currentTag = tagParam;
+    activeTag.classList.add('show');
+    activeTagText.textContent = `Тег: ${tagParam}`;
+  }
+  if (qParam) {
+    currentSearch = qParam;
+    searchInput.value = qParam;
+  }
+
+  window.clearTagFilter = () => {
+    currentTag = '';
+    activeTag.classList.remove('show');
+    const url = new URL(location.href);
+    url.searchParams.delete('tag');
+    history.replaceState(null, '', url.pathname + url.search);
+    loadServers();
+  };
+
+  // «Мне повезёт»
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    if (!allData.length) {
+      showToast('Каталог пуст. Добавьте первый сервер!');
+      return;
+    }
+    const random = allData[Math.floor(Math.random() * allData.length)];
+    document.body.classList.add('page-transition');
+    setTimeout(() => {
+      window.location.href = `https://kirill12633.github.io/partnership.metro.new/server/?id=${random.id}`;
+    }, 200);
+  });
 
   function renderSkeletons(count = 6) {
     grid.innerHTML = Array(count).fill(0).map(() => `
@@ -929,38 +570,47 @@
   async function loadServers() {
     renderSkeletons();
     page = 0;
+    isLoadingMore = false;
+    infiniteLoader.style.display = 'none';
+
     const { data, error } = await supabase.rpc('search_servers', {
       search_text: currentSearch || null,
       category_input: currentCategory || null,
       language_input: currentLanguage || null,
-      tag_input: null,
+      tag_input: currentTag || null,
       min_members: 0
     });
-    if (error) { grid.innerHTML = `<div class="empty">Ошибка: ${error.message}</div>`; return; }
-    if (!data || !data.length) {
-      allData = []; grid.innerHTML = '<div class="empty">😕 Серверов не найдено</div>';
-      loadMoreWrap.style.display = 'none'; return;
+
+    if (error) {
+      grid.innerHTML = `<div class="empty">Ошибка: ${error.message}</div>`;
+      return;
     }
+    if (!data || !data.length) {
+      allData = [];
+      grid.innerHTML = currentTag
+        ? `<div class="empty">😕 Нет серверов с тегом «${escapeHtml(currentTag)}»</div>`
+        : '<div class="empty">😕 Серверов не найдено</div>';
+      trustSection.classList.remove('show');
+      return;
+    }
+
     allData = sortData(data);
     renderTrust();
-    renderShowcase();
     renderPage();
     allData.forEach(s => { if (s.stats_enabled) supabase.rpc('increment_view', { server_id_input: s.id }).catch(() => {}); });
   }
 
-  // ===== «Нам доверяют» =====
   function renderTrust() {
-    // Показываем топ-6 серверов с аватаром как «партнёры»
     const withAvatar = allData.filter(s => s.avatar_url).slice(0, 6);
     if (withAvatar.length < 3) {
-      trustSection.style.display = 'none';
+      trustSection.classList.remove('show');
       return;
     }
-    trustSection.style.display = 'block';
+    trustSection.classList.add('show');
     trustRow.innerHTML = withAvatar.map(s => `
-      <a class="trust-item" href="https://kirill12633.github.io/partnership.metro.new/server/?id=${s.id}">
-        <div class="trust-avatar"><img src="${escapeHtml(s.avatar_url)}" alt=""></div>
-        <span>${escapeHtml(s.name.slice(0, 18))}${s.name.length > 18 ? '...' : ''}</span>
+      <a class="trust-item" href="https://kirill12633.github.io/partnership.metro.new/server/?id=${s.id}" title="${escapeHtml(s.name)}">
+        <div class="trust-avatar"><img src="${escapeHtml(s.avatar_url)}" alt="${escapeHtml(s.name)}"></div>
+        <span>${escapeHtml(s.name.slice(0, 16))}${s.name.length > 16 ? '...' : ''}</span>
       </a>
     `).join('');
   }
@@ -971,63 +621,84 @@
     if (page === 0) grid.innerHTML = '';
     grid.insertAdjacentHTML('beforeend', slice.map(cardHTML).join(''));
     page++;
-    loadMoreWrap.style.display = (page * PAGE_SIZE < allData.length) ? 'block' : 'none';
+    attachCardHandlers();
+    if (page * PAGE_SIZE < allData.length) {
+      infiniteLoader.style.display = 'block';
+    } else {
+      infiniteLoader.style.display = 'none';
+    }
   }
 
   function cardHTML(s) {
-    const tags = (s.partner_categories || []).slice(0,2);
+    const partnerTags = (s.partner_categories || []).slice(0, 2);
+    const allTags = [s.category, ...partnerTags];
     return `
-      <a class="card" href="https://kirill12633.github.io/partnership.metro.new/server/?id=${s.id}">
-        <button class="share-btn" data-share="${s.id}" title="Поделиться" onclick="event.preventDefault(); event.stopPropagation();">↗</button>
+      <a class="card" href="https://kirill12633.github.io/partnership.metro.new/server/?id=${s.id}" data-href="https://kirill12633.github.io/partnership.metro.new/server/?id=${s.id}">
         <div class="card-top">
-          <div class="avatar">${s.avatar_url ? `<img src="${s.avatar_url}" alt="">` : escapeHtml(s.name[0].toUpperCase())}</div>
-          <div><h3>${escapeHtml(s.name)}</h3><div class="meta">👥 ${(s.members||0).toLocaleString('ru-RU')} · ${escapeHtml((s.language||'').toUpperCase())}</div></div>
+          <div class="avatar">${s.avatar_url ? `<img src="${escapeHtml(s.avatar_url)}" alt="${escapeHtml(s.name)}" loading="lazy">` : escapeHtml(s.name[0].toUpperCase())}</div>
+          <div style="flex:1;min-width:0">
+            <h3>${escapeHtml(s.name)}</h3>
+            <div class="meta">
+              <span class="members-count">👥 ${(s.members||0).toLocaleString('ru-RU')}</span>
+              <span class="lang-badge">${escapeHtml((s.language||'ru').toUpperCase())}</span>
+            </div>
+          </div>
         </div>
-        <p>${escapeHtml((s.description || '').slice(0, 110))}</p>
+        <p>${escapeHtml((s.description || '').slice(0, 110))}${(s.description || '').length > 110 ? '...' : ''}</p>
         <div class="card-bottom">
-          <div class="tags"><span class="tag">${escapeHtml(s.category)}</span>${tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
-          ${s.invite_link ? `<span class="join">Войти</span>` : ''}
+          <div class="tags">
+            ${allTags.map(t => `<span class="tag" onclick="event.preventDefault(); event.stopPropagation(); window.location.href='https://kirill12633.github.io/partnership.metro.new/?tag=${encodeURIComponent(t)}'">${escapeHtml(t)}</span>`).join('')}
+          </div>
         </div>
       </a>`;
   }
 
-  function renderShowcase() {
-    const weekAgo = Date.now() - 7*24*60*60*1000;
-    const newOnes = allData.filter(s => new Date(s.created_at).getTime() > weekAgo).slice(0,8);
-    const top = sortData(allData).slice(0,8);
-    newRow.innerHTML = newOnes.length ? newOnes.map(miniHTML).join('') : '<div style="color:var(--dim);font-size:13px;padding:12px">Пока нет новых серверов</div>';
-    topRow.innerHTML = top.map(miniHTML).join('');
+  function attachCardHandlers() {
+    grid.querySelectorAll('.card').forEach(card => {
+      if (card.dataset.bound) return;
+      card.dataset.bound = '1';
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('.tag')) return;
+        e.preventDefault();
+        const href = card.dataset.href;
+        card.classList.add('fade-out');
+        document.body.classList.add('page-transition');
+        setTimeout(() => { window.location.href = href; }, 200);
+      });
+    });
   }
 
-  function miniHTML(s) {
-    return `<a class="mini-card" href="https://kirill12633.github.io/partnership.metro.new/server/?id=${s.id}">
-      <div class="mini-avatar">${s.avatar_url ? `<img src="${s.avatar_url}" alt="">` : escapeHtml(s.name[0].toUpperCase())}</div>
-      <div class="mini-info"><div class="mini-name">${escapeHtml(s.name)}</div><div class="mini-meta">👥 ${(s.members||0).toLocaleString('ru-RU')}</div></div>
-    </a>`;
-  }
+  // Бесконечный скролл
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !isLoadingMore) {
+        if (page * PAGE_SIZE < allData.length) {
+          isLoadingMore = true;
+          infiniteLoader.style.display = 'block';
+          setTimeout(() => {
+            renderPage();
+            isLoadingMore = false;
+          }, 300);
+        }
+      }
+    });
+  }, { rootMargin: '200px' });
 
-  document.addEventListener('click', async (e) => {
-    const btn = e.target.closest('[data-share]');
-    if (btn) {
-      e.preventDefault(); e.stopPropagation();
-      const id = btn.dataset.share;
-      const url = `https://kirill12633.github.io/partnership.metro.new/server/?id=${id}`;
-      try { await navigator.clipboard.writeText(url); showToast('Ссылка скопирована'); }
-      catch { showToast('Не удалось скопировать'); }
-    }
-  });
+  observer.observe(infiniteLoader);
 
-  loadMoreBtn.addEventListener('click', renderPage);
   let debounce;
   searchInput.addEventListener('input', e => {
     currentSearch = e.target.value.trim();
-    clearTimeout(debounce); debounce = setTimeout(loadServers, 400);
+    clearTimeout(debounce);
+    debounce = setTimeout(loadServers, 400);
   });
   filterCategory.addEventListener('change', e => { currentCategory = e.target.value; loadServers(); });
   filterLanguage.addEventListener('change', e => { currentLanguage = e.target.value; loadServers(); });
   sortBy.addEventListener('change', e => {
-    currentSort = e.target.value; allData = sortData(allData);
-    page = 0; grid.innerHTML = ''; renderPage();
+    currentSort = e.target.value;
+    allData = sortData(allData);
+    page = 0; grid.innerHTML = '';
+    renderPage();
   });
 
   function escapeHtml(str) {
