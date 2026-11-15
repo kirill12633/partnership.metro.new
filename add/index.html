@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +10,8 @@
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --bg: #f7f7f8; --bg-2: #f0f0f2; --card: #ffffff;
+  :root, [data-theme="light"] {
+    --bg: #f7f7f8; --bg-2: #ffffff; --card: #ffffff;
     --border: #e4e4e7; --border-hover: #d4d4d8;
     --text: #0a0a0a; --dim: #6b6b70; --dim-2: #9a9aa0;
     --accent: #111111; --accent-text: #ffffff; --accent-soft: #ebebee;
@@ -20,7 +20,16 @@
     --shadow-lg: 0 4px 12px rgba(0,0,0,.06), 0 16px 48px rgba(0,0,0,.06);
     --font: 'Inter', system-ui, sans-serif;
   }
-  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+  [data-theme="dark"] {
+    --bg: #0a0a0a; --bg-2: #111111; --card: #141414;
+    --border: #232323; --border-hover: #333333;
+    --text: #f4f4f4; --dim: #9a9a9a; --dim-2: #6b6b6b;
+    --accent: #f4f4f4; --accent-text: #0a0a0a; --accent-soft: #1a1a1a;
+    --danger: #ef4444; --success: #22c55e; --warning: #f59e0b;
+    --shadow: 0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.4);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,.4), 0 16px 48px rgba(0,0,0,.6);
+  }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; transition: background .3s, color .3s; }
   .wrap { max-width: 760px; margin: 0 auto; padding: 32px 20px 120px; }
 
   .progress-bar { display: flex; margin-bottom: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 6px; overflow: hidden; }
@@ -35,6 +44,8 @@
   .logo-mark img { width: 100%; height: 100%; object-fit: cover; }
   .back-link { font-size: 13px; color: var(--dim); text-decoration: none; padding: 8px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); transition: all .2s; }
   .back-link:hover { border-color: var(--border-hover); color: var(--text); }
+  .theme-btn { width: 36px; height: 36px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; display: grid; place-items: center; font-size: 15px; transition: all .2s; }
+  .theme-btn:hover { border-color: var(--border-hover); background: var(--accent-soft); }
 
   h1 { font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
   .sub { font-size: 14px; color: var(--dim); margin-bottom: 24px; line-height: 1.5; }
@@ -60,10 +71,12 @@
   }
   input:focus, textarea:focus, select:focus { border-color: var(--border-hover); background: var(--card); }
   input.error, textarea.error { border-color: var(--danger); }
+  input[readonly] { background: var(--accent-soft); color: var(--dim); cursor: default; }
   textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
   .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
 
+  /* Фото */
   .photo-drop { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .photo-preview {
     width: 96px; height: 96px; border-radius: 14px; overflow: hidden;
@@ -80,6 +93,26 @@
   .photo-btn.remove { color: var(--danger); border-color: #fecaca; margin-left: 6px; }
   .photo-btn.remove:hover { background: #fef2f2; }
 
+  /* Галерея */
+  .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-top: 12px; }
+  .gallery-item { aspect-ratio: 16/9; border-radius: 10px; overflow: hidden; background: var(--bg); border: 1px solid var(--border); position: relative; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-item .remove { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; background: rgba(0,0,0,.7); color: #fff; border: none; cursor: pointer; font-size: 12px; display: grid; place-items: center; }
+  .gallery-add { aspect-ratio: 16/9; border-radius: 10px; border: 2px dashed var(--border); display: grid; place-items: center; cursor: pointer; color: var(--dim); font-size: 24px; transition: all .2s; }
+  .gallery-add:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+
+  /* Кроп-модалка */
+  .crop-modal { position: fixed; inset: 0; background: rgba(0,0,0,.9); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; }
+  .crop-modal.show { display: flex; }
+  .crop-container { background: var(--card); border-radius: 16px; padding: 20px; max-width: 500px; width: 100%; }
+  .crop-container h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+  .crop-area { position: relative; width: 100%; aspect-ratio: 1; background: #000; border-radius: 10px; overflow: hidden; margin-bottom: 16px; }
+  .crop-area canvas { width: 100%; height: 100%; object-fit: contain; }
+  .crop-buttons { display: flex; gap: 10px; justify-content: flex-end; }
+  .crop-btn { padding: 10px 20px; border-radius: 9px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; }
+  .crop-btn.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+
+  /* Чекбоксы */
   .checkboxes { display: flex; flex-wrap: wrap; gap: 8px; }
   .checkbox-chip { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--bg); font-size: 13px; font-weight: 500; cursor: pointer; transition: all .2s; user-select: none; }
   .checkbox-chip:hover { border-color: var(--border-hover); }
@@ -90,6 +123,7 @@
   .checkbox-chip.legal.checked { background: var(--accent-soft); border-color: var(--accent); color: var(--text); }
   .checkbox-chip.legal a { color: var(--text); text-decoration: underline; }
 
+  /* Контакты */
   .contact-row { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
   .contact-row select { flex: 0 0 150px; }
   .contact-row input { flex: 1; }
@@ -98,6 +132,7 @@
   .add-contact { padding: 10px 16px; border-radius: 10px; border: 1px dashed var(--border); background: transparent; color: var(--dim); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; width: 100%; }
   .add-contact:hover { border-color: var(--border-hover); color: var(--text); background: var(--accent-soft); }
 
+  /* Теги */
   .tags-input-wrap { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); min-height: 46px; align-items: center; }
   .tags-input-wrap:focus-within { border-color: var(--border-hover); background: var(--card); }
   .tag-pill { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--text); font-size: 12px; font-weight: 600; }
@@ -105,6 +140,7 @@
   .tags-input-wrap input { border: none; background: none; flex: 1; min-width: 100px; padding: 4px 6px; font-size: 13px; outline: none; box-shadow: none; }
   .tags-input-wrap input:focus { box-shadow: none; }
 
+  /* Кнопки */
   .wizard-nav { display: flex; gap: 12px; margin-top: 24px; }
   .btn-primary { flex: 1; padding: 15px 28px; border-radius: 10px; border: none; background: var(--accent); color: var(--accent-text); font-size: 15px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .25s; display: flex; align-items: center; justify-content: center; gap: 10px; }
   .btn-primary:hover:not(:disabled) { opacity: .85; transform: translateY(-1px); }
@@ -140,82 +176,33 @@
   .success-screen .details span:first-child { color: var(--dim); }
   .success-screen .buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
+  /* Гильдии */
+  .guild-controls { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+  .guild-search { flex: 1 1 200px; padding: 10px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 13px; outline: none; font-family: inherit; }
+  .guild-sort { padding: 10px 14px; border-radius: 9px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 13px; outline: none; font-family: inherit; cursor: pointer; }
   .guild-list { display: flex; flex-direction: column; gap: 8px; max-height: 360px; overflow-y: auto; padding: 4px; }
   .guild-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg); cursor: pointer; transition: all .2s; }
   .guild-item:hover { border-color: var(--border-hover); background: var(--card); }
   .guild-item.selected { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 3px rgba(0,0,0,.05); }
-  .guild-item.disabled { opacity: .5; cursor: not-allowed; }
-  .guild-item.disabled:hover { border-color: var(--border); background: var(--bg); }
   .guild-icon { width: 44px; height: 44px; border-radius: 11px; overflow: hidden; background: var(--accent-soft); display: grid; place-items: center; color: var(--text); font-weight: 700; font-size: 16px; flex-shrink: 0; }
   .guild-icon img { width: 100%; height: 100%; object-fit: cover; }
   .guild-info { flex: 1; min-width: 0; }
   .guild-name { font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .guild-meta { font-size: 12px; color: var(--dim); margin-top: 2px; }
   .guild-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--text); border: 1px solid var(--border); font-weight: 600; flex-shrink: 0; }
-  .guild-badge.added { background: #fef2f2; color: var(--danger); border-color: #fecaca; }
   .guild-loading { text-align: center; padding: 32px; color: var(--dim); font-size: 14px; }
   .guild-error { padding: 20px; border-radius: 12px; background: #fef2f2; border: 1px solid #fecaca; color: var(--danger); font-size: 13px; line-height: 1.5; }
   .guild-error a { color: var(--danger); font-weight: 600; }
-
-  .rate-limit-box {
-    padding: 24px;
-    border-radius: 12px;
-    background: #fffbeb;
-    border: 1px solid #fde68a;
-    color: var(--warning);
-    text-align: center;
-  }
-  .rate-limit-box .title {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--text);
-  }
-  .rate-limit-box .timer {
-    font-size: 32px;
-    font-weight: 800;
-    font-family: ui-monospace, monospace;
-    color: var(--warning);
-    margin: 12px 0;
-  }
-  .rate-limit-box .desc {
-    font-size: 13px;
-    color: var(--dim);
-    line-height: 1.6;
-    margin-bottom: 16px;
-  }
-
-  .guild-empty {
-    text-align: center;
-    padding: 40px 24px;
-    background: var(--bg);
-    border: 1px dashed var(--border);
-    border-radius: 12px;
-  }
+  .guild-empty { text-align: center; padding: 40px 24px; background: var(--bg); border: 1px dashed var(--border); border-radius: 12px; }
   .guild-empty .icon { font-size: 48px; margin-bottom: 12px; }
   .guild-empty h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
   .guild-empty p { font-size: 13px; color: var(--dim); line-height: 1.6; margin-bottom: 16px; }
-  .guild-empty a { font-size: 13px; color: var(--text); text-decoration: underline; }
-
-  .refresh-btn {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--text);
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: inherit;
-    transition: all .2s;
-    margin-top: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
+  .refresh-btn { width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; transition: all .2s; margin-top: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .refresh-btn:hover { border-color: var(--border-hover); background: var(--accent-soft); }
+
+  .rate-limit-box { padding: 24px; border-radius: 12px; background: #fffbeb; border: 1px solid #fde68a; color: var(--warning); text-align: center; }
+  .rate-limit-box .title { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+  .rate-limit-box .timer { font-size: 32px; font-weight: 800; font-family: ui-monospace, monospace; color: var(--warning); margin: 12px 0; }
 
   .turnstile-wrap { margin: 16px 0; display: flex; justify-content: center; min-height: 65px; }
   .step { display: none; }
@@ -240,7 +227,10 @@
       <div class="logo-mark"><img src="https://kirill12633.github.io/Metro.New.Official/ru/images/metro-icon.png" alt="Metro New"></div>
       Metro New Partnership
     </a>
-    <a class="back-link" href="https://kirill12633.github.io/partnership.metro.new/auth/">← Аккаунт</a>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="theme-btn" id="themeBtn" title="Тема">🌙</button>
+      <a class="back-link" href="https://kirill12633.github.io/partnership.metro.new/auth/">← Аккаунт</a>
+    </div>
   </div>
 
   <div class="progress-bar" id="progressBar">
@@ -275,6 +265,14 @@
       <div class="card">
         <h2>Твой сервер</h2>
         <p class="hint">Выбери Discord-сервер, где у тебя есть права администратора.</p>
+        <div class="guild-controls">
+          <input class="guild-search" id="guildSearch" placeholder="Поиск по названию...">
+          <select class="guild-sort" id="guildSort">
+            <option value="owner">Сначала владелец</option>
+            <option value="members">По участникам</option>
+            <option value="name">По алфавиту</option>
+          </select>
+        </div>
         <div id="guildList" class="guild-list">
           <div class="guild-loading">Загрузка серверов...</div>
         </div>
@@ -297,16 +295,32 @@
         </div>
 
         <div class="field">
-          <label>Фото сервера</label>
+          <label>Ссылка-приглашение <span class="req">*</span></label>
+          <input type="url" id="f-invite" placeholder="https://discord.gg/..." readonly>
+          <div class="hint-small">Подставляется автоматически из выбранного сервера. Если пусто — введи вручную.</div>
+          <div class="field-error" id="err-invite"></div>
+        </div>
+
+        <div class="field">
+          <label>Фото сервера (аватар)</label>
           <div class="photo-drop">
             <div class="photo-preview" id="photoPreview" title="Перетащите файл сюда или нажмите">+</div>
             <div class="photo-info">
               <button type="button" class="photo-btn" id="photoBtn">Загрузить фото</button>
               <button type="button" class="photo-btn remove" id="photoRemove" style="display:none">Удалить</button>
               <input type="file" id="photoInput" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none">
-              <div class="hint-small">PNG, JPG, WEBP, GIF. До 5 МБ.</div>
+              <div class="hint-small">PNG, JPG, WEBP, GIF. До 5 МБ. Квадратное фото.</div>
             </div>
           </div>
+        </div>
+
+        <div class="field">
+          <label>Галерея (скриншоты)</label>
+          <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-add" id="galleryAdd">+</div>
+          </div>
+          <div class="hint-small">До 5 скриншотов. Показываются в ленте и на странице сервера.</div>
+          <input type="file" id="galleryInput" accept="image/png,image/jpeg,image/webp,image/gif" style="display:none" multiple>
         </div>
 
         <div class="field">
@@ -342,12 +356,13 @@
             <label>Участников <span class="req">*</span></label>
             <input type="number" id="f-members" placeholder="Например, 1500" min="0">
             <div class="field-error" id="err-members"></div>
-            <div class="field-warning" id="warn-members"></div>
           </div>
           <div class="field">
-            <label>Ссылка-приглашение <span class="req">*</span></label>
-            <input type="url" id="f-invite" placeholder="https://discord.gg/...">
-            <div class="field-error" id="err-invite"></div>
+            <label>Контент 18+</label>
+            <label class="checkbox-chip" id="nsfwChip" style="width:100%;padding:12px 14px;border-radius:10px">
+              <input type="checkbox" id="f-nsfw">
+              <span>Сервер содержит контент 18+ (NSFW)</span>
+            </label>
           </div>
         </div>
 
@@ -356,7 +371,7 @@
           <div class="tags-input-wrap" id="tagsWrap">
             <input type="text" id="tagInput" placeholder="Введи тег и нажми Enter">
           </div>
-          <div class="hint-small">До 8 тегов. Дубликаты объединяются автоматически.</div>
+          <div class="hint-small">До 8 тегов.</div>
           <div class="field-error" id="err-tags"></div>
         </div>
       </div>
@@ -425,17 +440,9 @@
         <div class="field">
           <label class="checkbox-chip legal" id="chip-docs">
             <input type="checkbox" id="f-docs">
-            <span>Я принимаю <a href="https://kirill12633.github.io/partnership.metro.new/terms/" target="_blank">Пользовательское соглашение</a>, <a href="https://kirill12633.github.io/partnership.metro.new/privacy/" target="_blank">Политику конфиденциальности</a> и <a href="https://kirill12633.github.io/partnership.metro.new/rules/" target="_blank">Правила размещения</a>.</span>
+            <span>Я принимаю <a href="https://kirill12633.github.io/partnership.metro.new/privacy/" target="_blank">политику конфиденциальности</a>, <a href="https://kirill12633.github.io/partnership.metro.new/terms/" target="_blank">пользовательское соглашение</a>, <a href="https://kirill12633.github.io/partnership.metro.new/rules/" target="_blank">правила размещения</a> и <a href="https://kirill12633.github.io/partnership.metro.new/dmca/" target="_blank">политику DMCA</a>.</span>
           </label>
           <div class="field-error" id="err-docs"></div>
-        </div>
-
-        <div class="field">
-          <label class="checkbox-chip legal" id="chip-admin">
-            <input type="checkbox" id="f-admin">
-            <span>Я являюсь <strong>администратором</strong> этого сервера и имею право размещать его в каталоге.</span>
-          </label>
-          <div class="field-error" id="err-admin"></div>
         </div>
 
         <div class="field">
@@ -447,34 +454,11 @@
         </div>
 
         <div class="field">
-          <label class="checkbox-chip legal" id="chip-age">
-            <input type="checkbox" id="f-age">
-            <span>Мне исполнилось <strong>13 лет</strong> (или 18+, если сервер содержит контент 18+).</span>
+          <label class="checkbox-chip legal" id="chip-admin">
+            <input type="checkbox" id="f-admin">
+            <span>Я являюсь <strong>администратором</strong> этого сервера и имею право размещать его в каталоге. Я понимаю, что администрация может <strong>отклонить заявку без объяснения причин</strong>.</span>
           </label>
-          <div class="field-error" id="err-age"></div>
-        </div>
-
-        <div class="field">
-          <label class="checkbox-chip legal" id="chip-moderation">
-            <input type="checkbox" id="f-moderation">
-            <span>Я согласен, что администрация вправе <strong>отклонить заявку</strong> без объяснения причин, а также удалить сервер при нарушении правил.</span>
-          </label>
-          <div class="field-error" id="err-moderation"></div>
-        </div>
-
-        <div class="field">
-          <label class="checkbox-chip legal" id="chip-nsfw">
-            <input type="checkbox" id="f-nsfw">
-            <span>Сервер содержит контент <strong>18+ (NSFW)</strong>. Я подтверждаю, что это законно.</span>
-          </label>
-        </div>
-
-        <div class="field">
-          <label class="checkbox-chip legal" id="chip-dmca">
-            <input type="checkbox" id="f-dmca">
-            <span>Я ознакомлен с <a href="https://kirill12633.github.io/partnership.metro.new/dmca/" target="_blank">политикой DMCA</a> и понимаю, что контент, нарушающий авторские права, будет удалён.</span>
-          </label>
-          <div class="field-error" id="err-dmca"></div>
+          <div class="field-error" id="err-admin"></div>
         </div>
 
         <div class="turnstile-wrap" id="turnstileContainer"></div>
@@ -507,6 +491,18 @@
     </div>
   </div>
 
+  <!-- Кроп-модалка -->
+  <div class="crop-modal" id="cropModal">
+    <div class="crop-container">
+      <h3>Обрезка фото</h3>
+      <div class="crop-area"><canvas id="cropCanvas"></canvas></div>
+      <div class="crop-buttons">
+        <button class="crop-btn" id="cropCancel">Отмена</button>
+        <button class="crop-btn primary" id="cropApply">Применить</button>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script type="module">
@@ -514,11 +510,24 @@
   const SUPABASE_KEY = 'sb_publishable_UjwfHz_j8SSpkqaTpqR87w_HSlswxaQ';
   const AUTH_URL = 'https://kirill12633.github.io/partnership.metro.new/auth/';
   const TURNSTILE_SITE_KEY = '0x4AAAAAACJJ-EXmOljL2_UU';
-  const DRAFT_KEY = 'metro_add_draft_v4';
+  const DRAFT_KEY = 'metro_add_draft_v7';
 
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
     auth: { detectSessionInUrl: false, persistSession: true, autoRefreshToken: true }
+  });
+
+  // Тема
+  const themeBtn = document.getElementById('themeBtn');
+  const savedTheme = localStorage.getItem('metro_theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  themeBtn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('metro_theme', next);
+    themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
   });
 
   const authRequired = document.getElementById('authRequired');
@@ -538,13 +547,18 @@
   let discordToken = null;
   let selectedGuild = null;
   let uploadedAvatarUrl = null;
+  let galleryUrls = [];
   let tags = [];
   let contacts = [{ type: 'discord_user', value: '' }];
   let turnstileWidgetId = null;
   let turnstileToken = null;
   let currentStep = 1;
   let rateLimitTimer = null;
-  let guildMembersMap = {};
+  let allGuilds = [];
+  let currentGuildSearch = '';
+  let currentGuildSort = 'owner';
+  let cropImage = null;
+  let cropCallback = null;
 
   const FORBIDDEN_TAGS = ['хуй', 'пизда', 'бля', 'еба', 'сука', 'нахуй', 'порно', 'секс', 'нарко'];
   const ADMIN_BITS = 0x8n | 0x20n;
@@ -584,17 +598,15 @@
       minOnline: document.getElementById('f-min-online')?.value || '',
       partnerNotes: document.getElementById('f-partner-notes')?.value || '',
       avatarUrl: uploadedAvatarUrl,
+      gallery: galleryUrls,
       tags,
       contacts,
+      nsfw: document.getElementById('f-nsfw')?.checked || false,
       partnerCats: Array.from(document.querySelectorAll('#partnerCats input:checked')).map(c => c.value),
       partnerConditions: Array.from(document.querySelectorAll('#partnerConditions input:checked')).map(c => c.value),
-      admin: document.getElementById('f-admin')?.checked || false,
-      age: document.getElementById('f-age')?.checked || false,
       docs: document.getElementById('f-docs')?.checked || false,
       data: document.getElementById('f-data')?.checked || false,
-      moderation: document.getElementById('f-moderation')?.checked || false,
-      nsfw: document.getElementById('f-nsfw')?.checked || false,
-      dmca: document.getElementById('f-dmca')?.checked || false,
+      admin: document.getElementById('f-admin')?.checked || false,
       savedAt: Date.now()
     };
   }
@@ -624,11 +636,13 @@
     if (d.minOnline) document.getElementById('f-min-online').value = d.minOnline;
     if (d.partnerNotes) document.getElementById('f-partner-notes').value = d.partnerNotes;
     if (d.avatarUrl) { uploadedAvatarUrl = d.avatarUrl; document.getElementById('photoPreview').innerHTML = `<img src="${d.avatarUrl}" alt="">`; document.getElementById('photoRemove').style.display = 'inline-block'; }
+    if (d.gallery) { galleryUrls = d.gallery; renderGallery(); }
     if (d.tags) { tags = d.tags; renderTags(); }
     if (d.contacts) { contacts = d.contacts; renderContacts(); }
+    if (d.nsfw) { document.getElementById('f-nsfw').checked = true; document.getElementById('nsfwChip').classList.add('checked'); }
     if (d.partnerCats) d.partnerCats.forEach(v => { const cb = document.querySelector(`#partnerCats input[value="${v}"]`); if (cb) { cb.checked = true; cb.closest('.checkbox-chip').classList.add('checked'); } });
     if (d.partnerConditions) d.partnerConditions.forEach(v => { const cb = document.querySelector(`#partnerConditions input[value="${v}"]`); if (cb) { cb.checked = true; cb.closest('.checkbox-chip').classList.add('checked'); } });
-    ['admin','age','docs','data','moderation','nsfw','dmca'].forEach(k => {
+    ['docs','data','admin'].forEach(k => {
       const cb = document.getElementById('f-' + k);
       if (cb && d[k]) { cb.checked = true; cb.closest('.checkbox-chip').classList.add('checked'); }
     });
@@ -663,19 +677,11 @@
       <div class="guild-error" style="padding:24px; text-align:left;">
         <div style="font-size:16px; font-weight:700; margin-bottom:10px; color:var(--danger);">⏱ Сессия Discord истекла</div>
         <p style="font-size:13.5px; line-height:1.6; margin-bottom:14px; color:var(--text);">
-          Discord-токен живёт <strong>1 час</strong> — это требование безопасности Discord. Мы не храним его дольше, чтобы защитить ваш аккаунт.
-        </p>
-        <p style="font-size:13.5px; line-height:1.6; margin-bottom:18px; color:var(--text);">
-          <strong>Что это значит:</strong><br>
-          • «Мои серверы» и каталог работают как обычно — токен там не нужен.<br>
-          • Добавление нового сервера требует свежий токен, чтобы проверить, что вы реально админ.
+          Discord-токен живёт <strong>1 час</strong> — это требование безопасности Discord.
         </p>
         <a href="${AUTH_URL}" style="display:inline-block; padding:12px 24px; border-radius:10px; background:var(--accent); color:var(--accent-text); font-size:14px; font-weight:600; text-decoration:none;">
           Войти заново через Discord →
         </a>
-        <div style="font-size:12px; color:var(--dim); margin-top:12px; line-height:1.5;">
-          После входа вернитесь на эту страницу — данные формы сохранятся.
-        </div>
       </div>
     `;
   }
@@ -689,7 +695,7 @@
     clearDraft(); draftNotice.classList.remove('show');
   });
 
-  // Загрузка гильдий с обработкой 429
+  // Загрузка гильдий
   async function loadGuilds() {
     guildList.innerHTML = '<div class="guild-loading"><span class="loading-indicator"></span>Загрузка серверов из Discord...</div>';
     refreshGuilds.style.display = 'none';
@@ -699,66 +705,30 @@
         headers: { Authorization: `Bearer ${discordToken}` }
       });
 
-      if (res.status === 401) {
-        showTokenExpired();
-        return;
-      }
-
+      if (res.status === 401) { showTokenExpired(); return; }
       if (res.status === 429) {
         const retryAfter = parseInt(res.headers.get('Retry-After') || '60');
         showRateLimit(retryAfter);
         return;
       }
-
       if (!res.ok) throw new Error('Ошибка Discord (' + res.status + ')');
 
       const guilds = await res.json();
-      const adminGuilds = guilds.filter(g => g.owner === true || hasAdminPermissions(g.permissions));
+      allGuilds = guilds.filter(g => g.owner === true || hasAdminPermissions(g.permissions));
 
-      if (!adminGuilds.length) {
+      if (!allGuilds.length) {
         guildList.innerHTML = `
           <div class="guild-empty">
             <div class="icon">😕</div>
             <h3>У вас нет серверов с правами администратора</h3>
-            <p>Чтобы добавить сервер, вам нужны права <strong>Администратора</strong> или <strong>Владельца</strong> на этом сервере.<br>Попросите владельца выдать права или используйте другой аккаунт.</p>
+            <p>Чтобы добавить сервер, вам нужны права <strong>Администратора</strong> или <strong>Владельца</strong>.</p>
             <button type="button" class="refresh-btn" onclick="location.reload()" style="margin-top:0">🔄 Обновить список</button>
           </div>
         `;
         return;
       }
 
-      // Получаем уже добавленные инвайты
-      const { data: existingServers } = await supabase.from('servers').select('invite_link');
-      const existingInvites = new Set((existingServers || []).map(s => s.invite_link).filter(Boolean));
-
-      guildList.innerHTML = '';
-      adminGuilds.forEach(g => {
-        const item = document.createElement('div');
-        item.className = 'guild-item';
-        item.dataset.id = g.id;
-
-        // Иконка с fallback при 404
-        const letter = escapeHtml(g.name[0].toUpperCase());
-        const iconHtml = (g.icon && g.icon !== 'null')
-          ? `<img src="https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png?size=128" alt="" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.remove(); this.parentElement.textContent='${letter}'">`
-          : letter;
-
-        const badge = g.owner ? 'Владелец' : 'Админ';
-        const approxMembers = g.approximate_member_count || 0;
-        const membersText = approxMembers > 0 ? ` · 👥 ${approxMembers.toLocaleString('ru-RU')}` : '';
-
-        item.innerHTML = `
-          <div class="guild-icon">${iconHtml}</div>
-          <div class="guild-info">
-            <div class="guild-name">${escapeHtml(g.name)}</div>
-            <div class="guild-meta">ID: ${g.id}${membersText}</div>
-          </div>
-          <span class="guild-badge">${badge}</span>
-        `;
-        item.addEventListener('click', () => selectGuild(item, g));
-        guildList.appendChild(item);
-      });
-
+      renderGuildList();
       refreshGuilds.style.display = 'flex';
 
     } catch (err) {
@@ -767,22 +737,76 @@
     }
   }
 
-  // Обработка 429 — таймер
+  function renderGuildList() {
+    let filtered = [...allGuilds];
+
+    if (currentGuildSearch) {
+      const q = currentGuildSearch.toLowerCase();
+      filtered = filtered.filter(g => g.name.toLowerCase().includes(q));
+    }
+
+    if (currentGuildSort === 'owner') {
+      filtered.sort((a, b) => (b.owner ? 1 : 0) - (a.owner ? 1 : 0));
+    } else if (currentGuildSort === 'members') {
+      filtered.sort((a, b) => (b.approximate_member_count || 0) - (a.approximate_member_count || 0));
+    } else if (currentGuildSort === 'name') {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    if (!filtered.length) {
+      guildList.innerHTML = '<div class="guild-loading">Ничего не найдено</div>';
+      return;
+    }
+
+    guildList.innerHTML = '';
+    filtered.forEach(g => {
+      const item = document.createElement('div');
+      item.className = 'guild-item' + (selectedGuild?.id === g.id ? ' selected' : '');
+      item.dataset.id = g.id;
+
+      const letter = escapeHtml(g.name[0].toUpperCase());
+      const iconHtml = (g.icon && g.icon !== 'null')
+        ? `<img src="https://cdn.discordapp.com/icons/${g.id}/${g.icon}.png?size=128" alt="" referrerpolicy="no-referrer" crossorigin="anonymous" onerror="this.remove(); this.parentElement.textContent='${letter}'">`
+        : letter;
+
+      const badge = g.owner ? 'Владелец' : 'Админ';
+      const approxMembers = g.approximate_member_count || 0;
+      const membersText = approxMembers > 0 ? ` · 👥 ${approxMembers.toLocaleString('ru-RU')}` : '';
+
+      item.innerHTML = `
+        <div class="guild-icon">${iconHtml}</div>
+        <div class="guild-info">
+          <div class="guild-name">${escapeHtml(g.name)}</div>
+          <div class="guild-meta">ID: ${g.id}${membersText}</div>
+        </div>
+        <span class="guild-badge">${badge}</span>
+      `;
+      item.addEventListener('click', () => selectGuild(item, g));
+      guildList.appendChild(item);
+    });
+  }
+
+  document.getElementById('guildSearch').addEventListener('input', (e) => {
+    currentGuildSearch = e.target.value.trim();
+    renderGuildList();
+  });
+
+  document.getElementById('guildSort').addEventListener('change', (e) => {
+    currentGuildSort = e.target.value;
+    renderGuildList();
+  });
+
   function showRateLimit(seconds) {
     if (rateLimitTimer) clearInterval(rateLimitTimer);
-
     guildList.innerHTML = `
       <div class="rate-limit-box">
         <div class="title">⏱ Слишком много запросов к Discord</div>
-        <div class="desc">Discord временно ограничил запросы. Это нормально — защита от спама. Подождите, и мы попробуем снова.</div>
         <div class="timer" id="rateLimitTimer">${seconds}</div>
-        <div class="desc">секунд до повторной попытки</div>
+        <div style="font-size:13px;color:var(--dim)">секунд до повторной попытки</div>
       </div>
     `;
-
     let remaining = seconds;
     const timerEl = document.getElementById('rateLimitTimer');
-
     rateLimitTimer = setInterval(() => {
       remaining--;
       if (timerEl) timerEl.textContent = remaining;
@@ -800,13 +824,24 @@
     selectedGuild = guild;
     document.getElementById('f-name').value = guild.name;
 
+    // Автоподстановка ссылки
+    const invite = guild.vanity_url_code
+      ? `https://discord.gg/${guild.vanity_url_code}`
+      : '';
+    if (invite) {
+      document.getElementById('f-invite').value = invite;
+      document.getElementById('f-invite').readOnly = true;
+    } else {
+      document.getElementById('f-invite').value = '';
+      document.getElementById('f-invite').readOnly = false;
+    }
+
     if (guild.icon && guild.icon !== 'null') {
       uploadedAvatarUrl = `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=256`;
       document.getElementById('photoPreview').innerHTML = `<img src="${uploadedAvatarUrl}" alt="" referrerpolicy="no-referrer" onerror="this.parentElement.textContent='${escapeHtml(guild.name[0].toUpperCase())}'">`;
       document.getElementById('photoRemove').style.display = 'inline-block';
     }
 
-    // Автозаполнение участников
     if (guild.approximate_member_count) {
       document.getElementById('f-members').value = guild.approximate_member_count;
     }
@@ -860,11 +895,8 @@
       let ok = true;
       const checks = [
         ['docs', 'f-docs', 'Примите документы'],
-        ['admin', 'f-admin', 'Подтвердите, что вы админ'],
         ['data', 'f-data', 'Согласитесь на обработку данных'],
-        ['age', 'f-age', 'Подтвердите возраст'],
-        ['moderation', 'f-moderation', 'Согласитесь с модерацией'],
-        ['dmca', 'f-dmca', 'Ознакомьтесь с DMCA']
+        ['admin', 'f-admin', 'Подтвердите, что вы админ']
       ];
       checks.forEach(([key, id, msg]) => {
         const cb = document.getElementById(id);
@@ -889,7 +921,7 @@
     if (!v || v.trim().length < 20) return 'Описание минимум 20 символов';
     if (v.length > 500) return 'Описание максимум 500 символов';
     const letters = v.replace(/[\p{Emoji}\p{Symbol}\s]/gu, '');
-    if (letters.length < 10) return 'Описание не должно состоять только из эмодзи и символов';
+    if (letters.length < 10) return 'Описание не должно состоять только из эмодзи';
     return null;
   }
   function validateMembers(v) {
@@ -903,46 +935,14 @@
     return null;
   }
 
-  async function validateInviteLive(v, guildId) {
-    const match = v.match(/discord\.(?:gg|com\/invite)\/([a-zA-Z0-9-]+)/);
-    if (!match) return 'Неверный формат ссылки';
-    try {
-      const res = await fetch(`https://discord.com/api/v10/invites/${match[1]}?with_counts=true`);
-      if (res.status === 429) return 'Слишком много запросов к Discord. Подождите минуту.';
-      if (!res.ok) return 'Ссылка недействительна или истекла';
-      const data = await res.json();
-      if (!data.guild) return 'Ссылка ведёт не на сервер (возможно, на бота или группу)';
-      if (data.guild.id !== guildId) return 'Ссылка ведёт на другой сервер';
-      return null;
-    } catch { return 'Не удалось проверить ссылку'; }
-  }
-
-  async function checkStillAdmin(guildId) {
-    try {
-      const res = await fetch('https://discord.com/api/v10/users/@me/guilds', {
-        headers: { Authorization: `Bearer ${discordToken}` }
-      });
-      if (!res.ok) return 'Не удалось проверить права. Войдите заново.';
-      const guilds = await res.json();
-      const guild = guilds.find(g => g.id === guildId);
-      if (!guild) return 'Вы больше не состоите в этом сервере';
-      if (guild.owner !== true && !hasAdminPermissions(guild.permissions)) return 'У вас больше нет прав администратора';
-      return null;
-    } catch { return 'Ошибка проверки прав'; }
-  }
-
   function showFieldError(id, msg) {
     const el = document.getElementById('err-' + id);
     const input = document.getElementById('f-' + id);
     if (el) { el.textContent = msg || ''; el.classList.toggle('show', !!msg); }
     if (input) input.classList.toggle('error', !!msg);
   }
-  function showFieldWarning(id, msg) {
-    const el = document.getElementById('warn-' + id);
-    if (el) { el.textContent = msg || ''; el.classList.toggle('show', !!msg); }
-  }
 
-  // Фото
+  // ===== ФОТО С КРОПОМ =====
   const photoBtn = document.getElementById('photoBtn');
   const photoInput = document.getElementById('photoInput');
   const photoPreview = document.getElementById('photoPreview');
@@ -950,7 +950,6 @@
 
   photoBtn.addEventListener('click', () => photoInput.click());
   photoPreview.addEventListener('click', () => photoInput.click());
-  photoInput.addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
 
   photoPreview.addEventListener('dragover', (e) => { e.preventDefault(); photoPreview.classList.add('dragover'); });
   photoPreview.addEventListener('dragleave', () => { photoPreview.classList.remove('dragover'); });
@@ -958,17 +957,59 @@
     e.preventDefault();
     photoPreview.classList.remove('dragover');
     const file = e.dataTransfer.files[0];
-    if (file) handleFile(file);
+    if (file) openCrop(file);
   });
 
-  async function handleFile(file) {
+  photoInput.addEventListener('change', (e) => {
+    if (e.target.files[0]) openCrop(e.target.files[0]);
+  });
+
+  function openCrop(file) {
     if (!file.type.startsWith('image/')) return showMsg('Только изображения', 'error');
     if (file.size > 5 * 1024 * 1024) return showMsg('Файл больше 5 МБ', 'error');
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      cropImage = new Image();
+      cropImage.onload = () => {
+        const canvas = document.getElementById('cropCanvas');
+        const ctx = canvas.getContext('2d');
+        const size = Math.min(cropImage.width, cropImage.height);
+        canvas.width = 400;
+        canvas.height = 400;
+        const sx = (cropImage.width - size) / 2;
+        const sy = (cropImage.height - size) / 2;
+        ctx.drawImage(cropImage, sx, sy, size, size, 0, 0, 400, 400);
+        document.getElementById('cropModal').classList.add('show');
+      };
+      cropImage.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  document.getElementById('cropCancel').addEventListener('click', () => {
+    document.getElementById('cropModal').classList.remove('show');
+    cropImage = null;
+    photoInput.value = '';
+  });
+
+  document.getElementById('cropApply').addEventListener('click', async () => {
+    const canvas = document.getElementById('cropCanvas');
+    canvas.toBlob(async (blob) => {
+      await uploadFile(blob, 'avatar');
+      document.getElementById('cropModal').classList.remove('show');
+      cropImage = null;
+      photoInput.value = '';
+    }, 'image/jpeg', 0.9);
+  });
+
+  async function uploadFile(blob, type) {
     photoPreview.innerHTML = '⏳';
     photoBtn.disabled = true;
     try {
-      const path = `${currentUser.id}/${Date.now()}-${file.name.replace(/[^a-z0-9.]/gi, '_')}`;
-      const { error: upErr } = await supabase.storage.from('server-avatars').upload(path, file);
+      const fileName = `${Date.now()}-${type}.jpg`;
+      const path = `${currentUser.id}/${fileName}`;
+      const { error: upErr } = await supabase.storage.from('server-avatars').upload(path, blob);
       if (upErr) throw upErr;
       const { data: urlData } = supabase.storage.from('server-avatars').getPublicUrl(path);
       uploadedAvatarUrl = urlData.publicUrl;
@@ -989,13 +1030,76 @@
     saveDraft();
   });
 
-  // Описание
+  // ===== ГАЛЕРЕЯ =====
+  const galleryGrid = document.getElementById('galleryGrid');
+  const galleryAdd = document.getElementById('galleryAdd');
+  const galleryInput = document.getElementById('galleryInput');
+
+  galleryAdd.addEventListener('click', () => galleryInput.click());
+
+  galleryInput.addEventListener('change', async (e) => {
+    const files = Array.from(e.target.files);
+    for (const file of files) {
+      if (galleryUrls.length >= 5) break;
+      if (!file.type.startsWith('image/')) continue;
+      if (file.size > 5 * 1024 * 1024) continue;
+      await uploadGalleryFile(file);
+    }
+    galleryInput.value = '';
+  });
+
+  async function uploadGalleryFile(file) {
+    try {
+      const path = `${currentUser.id}/gallery-${Date.now()}-${file.name.replace(/[^a-z0-9.]/gi, '_')}`;
+      const { error: upErr } = await supabase.storage.from('server-avatars').upload(path, file);
+      if (upErr) throw upErr;
+      const { data: urlData } = supabase.storage.from('server-avatars').getPublicUrl(path);
+      galleryUrls.push(urlData.publicUrl);
+      renderGallery();
+      saveDraft();
+    } catch (err) {
+      showMsg('Ошибка загрузки: ' + err.message, 'error');
+    }
+  }
+
+  function renderGallery() {
+    galleryGrid.innerHTML = '';
+    galleryUrls.forEach((url, i) => {
+      const item = document.createElement('div');
+      item.className = 'gallery-item';
+      item.innerHTML = `<img src="${escapeHtml(url)}" alt=""><button class="remove" data-i="${i}">×</button>`;
+      item.querySelector('.remove').addEventListener('click', () => {
+        galleryUrls.splice(i, 1);
+        renderGallery();
+        saveDraft();
+      });
+      galleryGrid.appendChild(item);
+    });
+    if (galleryUrls.length < 5) {
+      const addBtn = document.createElement('div');
+      addBtn.className = 'gallery-add';
+      addBtn.textContent = '+';
+      addBtn.addEventListener('click', () => galleryInput.click());
+      galleryGrid.appendChild(addBtn);
+    }
+  }
+
+  // ===== Описание =====
   document.getElementById('f-desc').addEventListener('input', (e) => {
     document.getElementById('descCount').textContent = e.target.value.length;
     saveDraft();
   });
 
-  // Теги
+  // ===== NSFW =====
+  document.getElementById('nsfwChip').addEventListener('click', (e) => {
+    if (e.target.tagName === 'INPUT') return;
+    const cb = document.getElementById('f-nsfw');
+    cb.checked = !cb.checked;
+    e.currentTarget.classList.toggle('checked', cb.checked);
+    saveDraft();
+  });
+
+  // ===== Теги =====
   const tagInput = document.getElementById('tagInput');
   const tagsWrap = document.getElementById('tagsWrap');
 
@@ -1005,7 +1109,7 @@
       const val = tagInput.value.trim().toLowerCase();
       if (!val) return;
       if (tags.length >= 8) return showMsg('Максимум 8 тегов', 'error');
-      if (FORBIDDEN_TAGS.some(w => val.includes(w))) return showMsg('Тег содержит запрещённое слово', 'error');
+      if (FORBIDDEN_TAGS.some(w => val.includes(w))) return showMsg('Запрещённое слово', 'error');
       if (!tags.includes(val)) { tags.push(val); renderTags(); saveDraft(); }
       tagInput.value = '';
     }
@@ -1025,7 +1129,7 @@
     });
   }
 
-  // Чекбоксы
+  // ===== Чекбоксы =====
   document.querySelectorAll('.checkbox-chip').forEach(chip => {
     const cb = chip.querySelector('input[type="checkbox"]');
     if (!cb) return;
@@ -1036,7 +1140,7 @@
     });
   });
 
-  // Контакты
+  // ===== Контакты =====
   const contactsList = document.getElementById('contactsList');
 
   function renderContacts() {
@@ -1083,7 +1187,7 @@
     renderContacts(); saveDraft();
   });
 
-  // Turnstile
+  // ===== Turnstile =====
   function initTurnstile() {
     if (turnstileWidgetId || !window.turnstile) return;
     turnstileWidgetId = turnstile.render('#turnstileContainer', {
@@ -1098,7 +1202,7 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  // Отправка
+  // ===== Отправка =====
   submitBtn.addEventListener('click', async () => {
     if (!validateStep(5)) return;
     if (!selectedGuild) return showMsg('Выбери сервер', 'error');
@@ -1110,60 +1214,13 @@
     submitBtn.classList.add('loading');
     submitBtn.disabled = true;
 
-    // 1. Проверка, что всё ещё админ
-    const adminErr = await checkStillAdmin(selectedGuild.id);
-    if (adminErr) {
-      showMsg(adminErr, 'error');
-      submitBtn.classList.remove('loading'); submitBtn.disabled = false;
-      return;
-    }
-
-    // 2. Проверка инвайта
-    const inviteErr = await validateInviteLive(invite, selectedGuild.id);
-    if (inviteErr) {
-      showFieldError('invite', inviteErr);
-      showMsg(inviteErr, 'error');
-      submitBtn.classList.remove('loading'); submitBtn.disabled = false;
-      return;
-    }
-    showFieldError('invite', '');
-
-    // 3. Проверка дубликата инвайта
-    const { data: existingInvite } = await supabase
-      .from('servers').select('id').eq('invite_link', invite).maybeSingle();
-    if (existingInvite) {
-      showMsg('Сервер с такой ссылкой уже есть в каталоге', 'error');
-      submitBtn.classList.remove('loading'); submitBtn.disabled = false;
-      return;
-    }
-
-    // 4. Проверка дубликата названия
-    const { data: existingName } = await supabase
-      .from('servers').select('id').ilike('name', name).maybeSingle();
-    if (existingName) {
-      showMsg('Сервер с таким названием уже есть в каталоге. Измените название.', 'error');
-      showFieldError('name', 'Такое название уже занято');
-      submitBtn.classList.remove('loading'); submitBtn.disabled = false;
-      return;
-    }
-
-    // 5. Проверка количества участников
-    if (selectedGuild.approximate_member_count) {
-      const real = selectedGuild.approximate_member_count;
-      const diff = Math.abs(real - members);
-      if (diff > Math.max(real * 0.5, 100)) {
-        showFieldWarning('members', `Реально в Discord: ~${real.toLocaleString('ru-RU')} участников. Убедитесь, что ввели верное число.`);
-      }
-    }
-
-    // 6. Капча
     try {
       const { data: verify, error: verifyErr } = await supabase.functions.invoke('verify-turnstile', {
         body: { token: turnstileToken }
       });
       if (verifyErr || !verify?.success) throw new Error('captcha_failed');
     } catch {
-      showMsg('Капча не пройдена. Обновите страницу и попробуйте снова.', 'error');
+      showMsg('Капча не пройдена. Обновите страницу.', 'error');
       submitBtn.classList.remove('loading'); submitBtn.disabled = false;
       return;
     }
@@ -1180,6 +1237,7 @@
       members,
       invite_link: invite,
       avatar_url: uploadedAvatarUrl,
+      gallery: galleryUrls,
       partner_min_members: document.getElementById('f-min-members').value ? parseInt(document.getElementById('f-min-members').value) : null,
       partner_min_online: document.getElementById('f-min-online').value ? parseInt(document.getElementById('f-min-online').value) : null,
       partner_categories: partnerCats.length ? partnerCats : null,
@@ -1226,7 +1284,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } catch (err) {
       console.error(err);
-      showMsg('Ошибка при сохранении: ' + err.message, 'error');
+      showMsg('Ошибка: ' + err.message, 'error');
     } finally {
       submitBtn.classList.remove('loading');
       submitBtn.disabled = false;
